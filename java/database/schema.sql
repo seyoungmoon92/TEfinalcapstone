@@ -27,10 +27,29 @@ CREATE TABLE landmarks (
     address varchar(80) not null,
     description varchar(255),
     rating int,
+    isActive boolean,
 
     CONSTRAINT pk_landmarks PRIMARY KEY (landmarkId)
 
 );
+
+CREATE TABLE photos (
+
+    photoId serial,
+    landmarkId int,
+    photoUrl varchar(1000),
+
+
+    CONSTRAINT pk_photos_photoId PRIMARY KEY (photoId),
+    CONSTRAINT fk_photos_landmarkId FOREIGN KEY (landmarkId) REFERENCES landmarks(landmarkId)
+
+
+);
+
+
+
+
+
 
 --CREATE TABLE landmarks_reviews (
 --    landmarkId int,
@@ -49,6 +68,8 @@ CREATE TABLE landmarks (
 --    CONSTRAINT pk_reviews PRIMARY KEY (reviewId)
 --);
 --
+
+
 --CREATE TABLE itinerary (
 --    user_id int,
 --    landmarkId int
@@ -63,12 +84,16 @@ CREATE TABLE landmarks (
 
 
 
+INSERT INTO landmarks (landmarkId, address, description, rating , isActive) VALUES (1, 'test road', 'test description1', 4, true);
+INSERT INTO landmarks (landmarkId, address, description, rating , isActive) VALUES (2, 'test1 road', 'test description2', 5, true);
+INSERT INTO landmarks (landmarkId, address, description, rating , isActive) VALUES (3, 'test2 road', 'test description3', 1, true);
+INSERT INTO landmarks (landmarkId, address, description, rating , isActive) VALUES (4, 'test3 road', 'test description4', 2, true);
+INSERT INTO landmarks (landmarkId, address, description, rating , isActive) VALUES (5, 'test4 road', 'test description5', 3, true);
 
-INSERT INTO landmarks (landmarkId, address, description, rating ) VALUES (1, 'test road', 'test description1', 4);
-INSERT INTO landmarks (landmarkId, address, description, rating ) VALUES (2, 'test1 road', 'test description2', 5);
-INSERT INTO landmarks (landmarkId, address, description, rating ) VALUES (3, 'test2 road', 'test description3', 1);
-INSERT INTO landmarks (landmarkId, address, description, rating ) VALUES (4, 'test3 road', 'test description4', 2);
-INSERT INTO landmarks (landmarkId, address, description, rating ) VALUES (5, 'test4 road', 'test description5', 3);
+INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (1,1,'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/080103_hakkai_fuji.jpg/1200px-080103_hakkai_fuji.jpg');
+
+
+
 
 -- UPDATING SEQUENCES SO THERE ARE NO CLASHES WHEN APP RUNS WITH EXISTING KEYS...
 ALTER SEQUENCE landmarks_landmarkId_seq RESTART WITH 100;
