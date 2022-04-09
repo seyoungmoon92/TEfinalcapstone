@@ -12,7 +12,7 @@
         <div id="nav-content" tabindex="0">
           <ul>
             <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
-            <li><a href="#0">Landmarks</a></li>
+            <li><router-link v-bind:to="{ name: 'landmark-search' }">Landmarks</router-link></li>
             <li><a href="#0">Create an Itinerary</a></li>
             <li><router-link v-bind:to="{ name: 'login' }" >Login</router-link></li>
             <li><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></li>
