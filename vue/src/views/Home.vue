@@ -1,43 +1,9 @@
 <template>
-  <div class="home">
-    <div class="page">
-      <header tabindex="0">JG FOXTROT</header>
-      <div id="nav-container">
-        <div class="bg"></div>
-        <div class="button" tabindex="0">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </div>
-        <div id="nav-content" tabindex="0">
-          <ul>
-            <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
-            <li><router-link v-bind:to="{ name: 'landmark-search' }">Landmarks</router-link></li>
-            <li><a href="#0">Create an Itinerary</a></li>
-            <li><router-link v-bind:to="{ name: 'login' }" >Login</router-link></li>
-            <li><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></li>
-            <li class="small">
-              <a href="#0">GitHub</a><a href="#0">LinkedIn</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <main>
-        <div class="content">
-          <h2>Placeholder <span>Text</span></h2>
-          <p>
-            Picture of Mt. Fuji or some shit right here
-          </p>
-          <small
-            >Placeholder call to action that navigates to landmark search</small
-          >
-        </div>
-      </main>
-    </div>
-    <!-- <h1>Home</h1>
-    <p>You must be authenticated to see this</p> -->
-  </div>
+  <body>
+    <img class="background" />
+    <h1 class="content">Discover Japan</h1>
+    <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button">Search Landmarks</router-link>
+  </body>
 </template>
 
 <script>
@@ -47,229 +13,132 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
-
-* {
-  outline: none;
-}
-
-strong {
-  font-weight: 600;
-}
-
-.page {
-  width: 100%;
-  height: 100vh;
-  background: #fdfdfd;
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  color: #212121;
-}
-
-header {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 70px;
-  background: #212121;
-  color: #fff;
-  justify-content: center;
-  align-items: center;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-main {
-  padding: 70px 20px 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-main > div {
-  margin: auto;
-  max-width: 600px;
-}
-
-main h2 span {
-  color: #bf7497;
-}
-
-main p {
-  line-height: 1.5;
-  font-weight: 200;
-  margin: 20px 0;
-}
-
-main small {
-  font-weight: 300;
-  color: #888;
-}
-
-#nav-container {
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  pointer-events: none;
-}
-#nav-container .bg {
-  position: absolute;
-  top: 70px;
-  left: 0;
-  width: 100%;
-  height: calc(100% - 70px);
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.3s;
-  background: #000;
-}
-#nav-container:focus-within .bg {
-  visibility: visible;
-  opacity: 0.6;
-}
-#nav-container * {
-  visibility: visible;
-}
-
-.button {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  z-index: 1;
-  -webkit-appearance: none;
-  border: 0;
-  background: transparent;
-  border-radius: 0;
-  height: 70px;
-  width: 30px;
-  cursor: pointer;
-  pointer-events: auto;
-  margin-left: 25px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-.icon-bar {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: #aaa;
-  transition: 0.3s;
-}
-.icon-bar + .icon-bar {
-  margin-top: 5px;
-}
-
-#nav-container:focus-within .button {
-  pointer-events: none;
-}
-#nav-container:focus-within .icon-bar:nth-of-type(1) {
-  transform: translate3d(0, 8px, 0) rotate(45deg);
-}
-#nav-container:focus-within .icon-bar:nth-of-type(2) {
-  opacity: 0;
-}
-#nav-container:focus-within .icon-bar:nth-of-type(3) {
-  transform: translate3d(0, -8px, 0) rotate(-45deg);
-}
-
-#nav-content {
-  margin-top: 70px;
-  padding: 20px;
-  width: 90%;
-  max-width: 300px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: calc(100% - 70px);
-  background: #ececec;
-  pointer-events: auto;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transform: translateX(-100%);
-  transition: transform 0.3s;
-  will-change: transform;
-  contain: paint;
-}
-
-#nav-content ul {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-#nav-content li a {
-  padding: 10px 5px;
-  display: block;
-  text-transform: uppercase;
-  transition: color 0.1s;
-}
-
-#nav-content li a:hover {
-  color: #bf7497;
-}
-
-#nav-content li:not(.small) + .small {
-  margin-top: auto;
-}
-
-.small {
-  display: flex;
-  align-self: center;
-}
-
-.small a {
-  font-size: 12px;
-  font-weight: 400;
-  color: #888;
-}
-.small a + a {
-  margin-left: 15px;
-}
-
-#nav-container:focus-within #nav-content {
-  transform: none;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-a,
-a:visited,
-a:focus,
-a:active,
-a:link {
-  text-decoration: none;
-  outline: 0;
-}
-
-a {
-  color: currentColor;
-  transition: 0.2s ease-in-out;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  margin: 0;
-}
-
-ul {
-  padding: 0;
-  list-style: none;
-}
-
 img {
-  vertical-align: middle;
-  height: auto;
   width: 100%;
 }
+.background {
+  z-index: -1;
+  /* The image used */
+  display: flex;
+  background-image: url("https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2092&q=80");
+
+  /* Full height */
+  height: 100%;
+  width: 100%;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content {
+  font-size: 3rem;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.button {
+  color: white;
+  background-color: rgba(54, 53, 53, 0.63);
+  font-family: 'Roboto Mono';
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 10px 0;
+  border-radius: 5px;
+  height: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.button:hover {
+  background-color: black;
+}
+
+
+
+@import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
+
+h1 {
+  font-size: calc(20px + 18vh);
+  line-height: calc(20px + 20vh);
+/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+  color: #fccaff; */
+  text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #ff006a, 0 0 98px #ff0000;
+    color: #ff006a;
+  font-family: "Roboto Mono", cursive;
+  text-align: center;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
+}
+
+
+
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #fa92bd, 0 0 98px #ff0000;
+    color: #ffa9ec;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #fa92bd, 0 0 98px #ff0000;
+    color: #ffd7f2;
+  }
+}
+
+
 </style>
