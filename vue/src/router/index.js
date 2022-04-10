@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import LandmarkSearch from '../views/LandmarkSearchView.vue'
+import AddLandmark from '../views/AddLandmarkView.vue'
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -60,6 +61,14 @@ const router = new Router({
       component: LandmarkSearch,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/addLandmark",
+      name: "add-landmark",
+      component: AddLandmark,
+      meta: {
+        requiresAuth: true
       }
     },
   ]

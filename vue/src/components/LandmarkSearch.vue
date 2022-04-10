@@ -100,7 +100,7 @@ input[type="text"] {
   margin: 30px;
   width: 15%;
   padding: 12px 17px;
-  border: 2px solid green;
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 6px;
 }
 
@@ -111,7 +111,7 @@ img {
 
 div.minimalistBlack {
   margin: auto;
-  border: 2px solid #06b712;
+  border: 2px solid #000000;
   width: 80%;
   text-align: left;
   border-collapse: collapse;
@@ -125,21 +125,21 @@ div.minimalistBlack {
   font-size: 14px;
 }
 .divTable.minimalistBlack .divTableHeading {
-  background: #1dff2c;
-  background: -moz-linear-gradient(top, #55ff61 0%, #33ff41 66%, #1dff2c 100%);
+  background: #fa92bd;
+  background: -moz-linear-gradient(top, #fa92bd 0%, #fa92bd 66%, #fa92bd 100%);
   background: -webkit-linear-gradient(
     top,
-    #55ff61 0%,
-    #33ff41 66%,
-    #1dff2c 100%
+    #fa92bd 0%,
+    #fa92bd 66%,
+    #fa92bd 100%
   );
-  background: linear-gradient(to bottom, #55ff61 0%, #33ff41 66%, #1dff2c 100%);
-  border-bottom: 3px solid #0f9a39;
+  background: linear-gradient(to bottom, #fa92bd 0%, #fa92bd 66%, #fa92bd 100%);
+  border-bottom: 3px solid #fa92bd;
 }
 .divTable.minimalistBlack .divTableHeading .divTableHead {
   font-size: 15px;
   font-weight: bold;
-  color: #109902;
+  color: #000000;
   text-align: left;
 }
 .minimalistBlack .tableFootStyle {
