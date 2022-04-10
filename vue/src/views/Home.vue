@@ -2,7 +2,7 @@
   <body>
     <img class="background" />
     <h1 class="content">Discover Japan</h1>
-    <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button btnfos btnfos-2">Search Landmarks</router-link>
+    <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button btnfos btnfos-2">Start Your Journey</router-link>
   </body>
 </template>
 
@@ -160,7 +160,7 @@ h1 {
   /* font-size: 16px; */
   /* font-weight: 400; */
   line-height: 45px;
-  max-width: 27.5rem;
+  max-width: 34.5rem;
   margin: 0 auto 2em;
   /* position: relative; */
   text-transform: uppercase;
