@@ -65,6 +65,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
 
 * {
   outline: none;
@@ -78,7 +79,7 @@ strong {
   width: 100%;
   height: 100vh;
   background: #fdfdfd;
-  font-family: "Encode Sans Condensed", sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #212121;
