@@ -6,6 +6,7 @@ import java.util.List;
 public class Landmark {
     //Variable Declaration
     private int landmarkId;
+    private String name = "";
     private String location = "";
     private String description = "";
     private int rating = 0;
@@ -66,5 +67,13 @@ public class Landmark {
 
     public void setLandmarkId(int landmarkId) {
         this.landmarkId = landmarkId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
