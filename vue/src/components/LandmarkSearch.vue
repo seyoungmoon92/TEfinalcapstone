@@ -27,7 +27,7 @@
                 v-bind:src="photo.photoUrl"
               />
             </div>
-            <div class="divTableCell">test name</div>
+            <div class="divTableCell">{{landmark.name}}</div>
             <div class="divTableCell">
               {{ landmark.location }}
             </div>
