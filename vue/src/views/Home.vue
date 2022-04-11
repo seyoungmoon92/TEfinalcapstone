@@ -2,7 +2,7 @@
   <body>
     <img class="background" />
     <h1 class="content">Discover Japan</h1>
-    <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button">Search Landmarks</router-link>
+    <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button btnfos btnfos-2">Start Your Journey</router-link>
   </body>
 </template>
 
@@ -49,11 +49,16 @@ img {
   z-index: 2;
 }
 .button {
-  color: white;
-  background-color: rgba(54, 53, 53, 0.63);
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
   font-family: 'Roboto Mono';
-  font-weight: bold;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 2rem;
   margin: 0 10px 0;
   border-radius: 5px;
   height: 4%;
@@ -61,15 +66,13 @@ img {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 47%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
 
-.button:hover {
-  background-color: black;
-}
+
 
 
 
@@ -79,10 +82,10 @@ img {
 h1 {
   font-size: calc(20px + 18vh);
   line-height: calc(20px + 20vh);
-/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+  text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
     0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  color: #fccaff; */
-  text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #ff006a, 0 0 98px #ff0000;
+  color: #fccaff;
+  /* text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #ff006a, 0 0 98px #ff0000; */
     color: #ff006a;
   font-family: "Roboto Mono", cursive;
   text-align: center;
@@ -139,6 +142,87 @@ h1 {
     color: #ffd7f2;
   }
 }
+* {
+  -moz-box-sizing: inherit;
+       box-sizing: inherit;
+  -webkit-transition-property: all;
+          transition-property: all;
+  -webkit-transition-duration: .6s;
+          transition-duration: .6s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
 
+.btnfos {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  /* display: block; */
+  /* font-size: 16px; */
+  /* font-weight: 400; */
+  line-height: 45px;
+  max-width: 34.5rem;
+  margin: 0 auto 2em;
+  /* position: relative; */
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
+}
+@media (min-width: 400px) {
+  .btnfos {
+    display: inline-block;
+    margin-right: 2.5em;
+  }
+  .btnfos:nth-of-type(even) {
+    margin-right: 0;
+  }
+}
+@media (min-width: 600px) {
+  .btnfos:nth-of-type(even) {
+    margin-right: 2.5em;
+  }
+  .btnfos:nth-of-type(5) {
+    margin-right: 0;
+  }
+}
+
+.btnfos-2 {
+  letter-spacing: 0;
+}
+
+.btnfos-2:hover,
+.btnfos-2:active {
+  letter-spacing: 5px;
+}
+
+.btnfos-2:after,
+.btnfos-2:before {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border: 1px solid rgba(255, 255, 255, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  -webkit-transition: all 280ms ease-in-out;
+          transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btnfos-2:hover:after,
+.btnfos-2:hover:before {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-color: #fff;
+  -webkit-transition: width 350ms ease-in-out;
+          transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.btnfos-2:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
 
 </style>

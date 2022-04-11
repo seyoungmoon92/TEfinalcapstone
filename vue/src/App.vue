@@ -1,50 +1,58 @@
 <template>
   <!-- <div class="home"> -->
-    <div class="page">
-      <header tabindex="0">JG FOXTROT</header>
-      <div id="nav-container">
-        <div class="bg"></div>
-        <div class="button" tabindex="0">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </div>
-        <div id="nav-content" tabindex="0">
-          <ul>
-            <li>
-              <router-link v-bind:to="{ name: 'home' }">Home</router-link>
-            </li>
-            <li>
-              <router-link v-bind:to="{ name: 'landmark-search' }"
-                >Landmarks</router-link
-              >
-            </li>
-            <li><a href="#0">Create an Itinerary</a></li>
-            <li>
-              <router-link v-bind:to="{ name: 'login' }">Login</router-link>
-            </li>
-            <li>
-              <router-link
-                v-bind:to="{ name: 'logout' }"
-                v-if="$store.state.token != ''"
-                >Logout</router-link
-              >
-            </li>
-            <li class="small">
-              <a href="#0">GitHub</a><a href="#0">LinkedIn</a>
-            </li>
-          </ul>
-        </div>
+  <div class="page">
+    <header tabindex="0">JG FOXTROT</header>
+    <div id="nav-container">
+      <div class="bg"></div>
+      <div class="button" tabindex="0">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </div>
-
-      <main class="background">
-        
-          
-          <router-view />
-        
-      </main>
+      <div id="nav-content" tabindex="0">
+        <ul>
+          <li>
+            <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+          </li>
+          <li>
+            <router-link v-bind:to="{ name: 'landmark-search' }"
+              >Landmarks</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              v-bind:to="{ name: 'add-landmark' }"
+              v-if="$store.state.token != ''"
+              >Add Landmark</router-link
+            >
+          </li>
+          <li><a href="#0">Create an Itinerary</a></li>
+          <li>
+            <router-link
+              v-bind:to="{ name: 'login' }"
+              v-if="$store.state.token == ''"
+              >Login</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              v-bind:to="{ name: 'logout' }"
+              v-if="$store.state.token != ''"
+              >Logout</router-link
+            >
+          </li>
+          <li class="small">
+            <a href="#0">GitHub</a><a href="#0">LinkedIn</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <!-- <h1>Home</h1>
+
+    <main class="background">
+      <router-view />
+    </main>
+  </div>
+  <!-- <h1>Home</h1>
     <p>You must be authenticated to see this</p> -->
   <!-- </div> -->
 </template>
@@ -57,6 +65,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
 
 * {
   outline: none;
@@ -70,7 +79,7 @@ strong {
   width: 100%;
   height: 100vh;
   background: #fdfdfd;
-  font-family: "Encode Sans Condensed", sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #212121;
@@ -95,10 +104,10 @@ main {
   height: 100%;
 }
 
-main > div {
+/* main > div {
   margin: auto;
   max-width: 600px;
-}
+} */
 
 main h2 span {
   color: #bf7497;
@@ -281,6 +290,5 @@ img {
   height: auto;
   width: 100%;
 }
-
 </style>
 
