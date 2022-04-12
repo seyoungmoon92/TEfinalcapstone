@@ -7,10 +7,9 @@
             <div class="property-image-title"></div></div
         ></a>
         <div class="property-description">
-          <h5>Card Title</h5>
+          <h5>{{landmarks[0].name}}</h5>
           <p>
-            Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More
-            Bingo. Lorem Ipum doth be hard.
+            {{landmarks[0].description}}
           </p>
         </div>
         <a href="#">
@@ -28,15 +27,43 @@
 </template>
 
 <script>
+import landmarkService from "../services/LandmarkService.js";
+import photoService from "../services/PhotoService.js";
+
 export default {
-    name='landmark-card',
+    name:'landmark-card',
     data() {
         return {
-            landmark: {
-
-            }
+            idFilter: "",
+            landmarks: [],
+            landmarksWithUrl: [],
+            photos: [],
+            filteredPhotos: [],
         };
     },
+    methods: {
+
+    },
+    created() {
+            photoService.search().then((response) => {
+            this.photos = response.data;
+            });
+            landmarkService.search().then((response) => {
+            this.landmarks = response.data;
+            this.landmarks.photoUrl = "test";
+            });
+            this.landmarksWithUrl = this.landmarks;
+            for(let i = 0; i < this.landmarks.length; i ++) {
+                this.landmarksWithUrl[i] = this.landmarks[i];
+            }
+            for(let i = 0; i < this.photos.length; i++) {
+                this.landmarksWithUrl[i].photoUrl = "test";
+            }
+
+            
+
+
+    }
 
 };
 </script>
@@ -74,8 +101,8 @@ p {
 /* End Non-Essential */
 
 .property-card {
-  height: 18em;
-  width: 14em;
+  height: 36em;
+  width: 28em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -97,15 +124,16 @@ p {
 /* Top Half of card, image. */
 
 .property-image {
-  height: 6em;
-  width: 14em;
-  padding: 1em 2em;
+  height: 20em;
+  width: 30em;
+  /*padding: -1em 2em; */
   position: Absolute;
+  margin-left: -24px;
   top: 0px;
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  background-image: url("https://www.javascriptfreecode.com/uploads/pictures/10-what-is-landscape-photography.jpg");
+  transition: all 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tokyo_National_Museum%2C_Honkan_2010.jpg/1200px-Tokyo_National_Museum%2C_Honkan_2010.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -114,13 +142,13 @@ p {
 
 .property-description {
   background-color: #fafafc;
-  height: 12em;
-  width: 14em;
+  height: 18em;
+  width: 28em;
   position: absolute;
   bottom: 0em;
-  -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
   padding: 0.5em 1em;
   text-align: center;
 }
@@ -146,7 +174,12 @@ p {
   padding: 0px 1em;
 }
 .property-card:hover .property-image {
-  height: 18em;
+  margin-left: -220px;
+  height: 36em;
+  width: 50em;
+  
+  
+
 }
 
 .property-card:hover .property-social-icons {
@@ -158,7 +191,7 @@ p {
   cursor: pointer;
 }
 
-/* Optional
+
 
 .property-image-title
 {
@@ -176,5 +209,5 @@ font-size:1.2em;
 opacity:1;
 }
 
-*/
+
 </style>

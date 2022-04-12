@@ -83,6 +83,9 @@ export default {
     // photoService.searchByLandmark(this.landmark.landmarkId).then((response) => {
     //   this.filteredPhotos = response.data;
     // });
+    
+
+
   },
 };
 </script>

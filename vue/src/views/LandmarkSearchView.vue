@@ -3,17 +3,20 @@
   <!-- <landmark-search/> -->
   <div id="map">
       <AddGoogleMap />
+      <landmark-card />
    </div>
 </div>
 </template>
 
 <script>
+import LandmarkCard from '../components/LandmarkCard.vue';
 import AddGoogleMap from "../components/Map.vue";
 // import LandmarkSearch from '../components/LandmarkSearch.vue'
 export default {
   components: { 
     // LandmarkSearch,
-    AddGoogleMap
+    AddGoogleMap,
+    LandmarkCard
    },
 
 }
