@@ -6,6 +6,8 @@
           <!-- prompts user for location -->
         <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
         <button @click="addLocationMarker">Add</button>
+        
+        <button @click="radiusSearch">Radius Test</button>
       </label>
       <br />
     </div>
@@ -24,6 +26,8 @@
  
 <script>
 import landmarkService from "../services/LandmarkService.js";
+import {gmapApi} from 'vue2-google-maps' // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
+import { eventBus } from '@/event-bus.js';
 export default {
   name: "AddGoogleMap",
   data() {
@@ -41,6 +45,7 @@ export default {
   },
 //   filtered landmark array by ID, will need to change filter parameter
   computed: {
+    google: gmapApi,
     filteredLandmarks() {
       return this.landmarks.filter((landmark) => {
         return this.idFilter == ""
@@ -52,14 +57,17 @@ export default {
 
 // Sets center location when loaded
   mounted() {
+    
     this.locateGeoLocation();
   },
+ 
 
   methods: {
     //   Works with google maps autocomplete function to find location
     initMarker(loc) {
       this.existingPlace = loc;
     },
+
     // if it exists it will add marker to map when you click add
     addLocationMarker() {
       if (this.existingPlace) {
@@ -73,6 +81,7 @@ export default {
         this.existingPlace = null;
       }
     },
+
     // if location is on it will default center to current location
     locateGeoLocation: function () {
       navigator.geolocation.getCurrentPosition((res) => {
@@ -82,9 +91,26 @@ export default {
         };
       });
     },
+
+// TESTING CONSOLE OUTPUT TO SEE IF FUNCTION WORKING... IT'S NOT
+    radiusSearch(){
+      let acoord = new gmapApi.maps.LatLng(-36.874694, 174.735292);
+      // let bcoord = new gmapApi.maps.LatLng(-36.858317, 174.782284);
+      
+      console.log(acoord);
+    }
+    
+
+  
+    
+
   },
 //   axios call to get landmark JSON array
   created() {
+    eventBus.$on('launchKeywordSearch', (payload) => {
+      this.doKeywordSearch(payload);
+    });
+    this.locateGeoLocation();
       landmarkService.search().then((response) => {
       this.landmarks = response.data; // response data contains my JSON - array of homes that came back from the server
     });
