@@ -48,43 +48,6 @@ CREATE TABLE photos (
 );
 
 
-
-
-
-
---CREATE TABLE landmarks_reviews (
---    landmarkId int,
---    reviewId int
---
---    CONSTRAINT fk_landmarks FOREIGN KEY (landmarkId),
---    CONSTRAINT fk_reviews FOREIGN KEY (reviewId)
---);
---
---CREATE TABLE reviews (
---    reviewId serial,
---    name varchar(50),
---    title varchar(60),
---    body varchar(255)
---
---    CONSTRAINT pk_reviews PRIMARY KEY (reviewId)
---);
---
-
-
---CREATE TABLE itinerary (
---    user_id int,
---    landmarkId int
---
---    CONSTRAINT FK_user FOREIGN KEY (user_id),
---    CONSTRAINT FK_landmarks FOREIGN KEY (landmarkId)
---
---);
-
-
-
-
-
-
 INSERT INTO landmarks (landmarkId, name, address, description, rating , isActive) VALUES (1, 'Tokyo National Mueseum', '13-9 Uenokoen, Taito City, Tokyo 110-8712, Japan', 'The Tokyo National Museum , Tokyo Kokuritsu Hakubutsukan) or TNM is an art museum in Ueno Park in the Taito ward of Tokyo, Japan. It is one of the four museums[a] operated by the National Institutes for Cultural Heritage , is considered the oldest national museum in Japan, is the largest art museum in Japan, and is one of the largest art museums in the world. The museum collects, preserves, and displays a comprehensive collection of artwork and cultural objects from Asia, with a focus on ancient and medieval Japanese art and Asian art along the Silk Road. There is also a large collection of Greco-Buddhist art. The museum holds over 110,000 Cultural Properties, including 89 National Treasures of Japan, 319 Horyuji Treasures, and 644 Important Cultural Properties.[b] In addition, the museum houses over 3000 Cultural Properties deposited by individuals and organizations, including 55 national treasures and 253 important cultural properties (as of March 2019).[2] The museum also conducts research and organizes educational events related to its collection.', 4, true);
 INSERT INTO landmarks (landmarkId, name, address, description, rating , isActive) VALUES (2, 'Universal Studios Japan', '2 chome 1-33 Sakurajima, Oosakashikonohana-ku, Osaka 554-0031', 'Universal Studios Japan offers world-class entertainment such as authentic attractions and shows, based not only on Hollywood blockbusters but also popular entertainment brands, and a variety of seasonal events entertaining its guests to the fullest. Universal Studios Japan has continued to evolve since its opening and has recently accelerated its growth with the launch of world-class entertainment experiences such as The Wizarding World of Harry Potter, The Flying Dinosaur and Minion Park and Despicable Me Minion Mayhem Ride. SUPER NINTENDO WORLD, a new area where you can enjoy entertainment based on world-renowned Nintendo characters and their worlds.', 5, true);
 INSERT INTO landmarks (landmarkId, name, address, description, rating , isActive) VALUES (3, 'Ghibli Museum', '1 Chome-1-83 Shimorenjaku, Mitaka, Tokyo 181-0013, Japan', 'Whimsical museum dedicated to the famed animation studio with a play area, theater & rooftop garden.', 5, true);
