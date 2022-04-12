@@ -1,6 +1,6 @@
 <template>
 <div>
-  <landmark-search/>
+  <!-- <landmark-search/> -->
   <div id="map">
       <AddGoogleMap />
    </div>
@@ -9,10 +9,10 @@
 
 <script>
 import AddGoogleMap from "../components/Map.vue";
-import LandmarkSearch from '../components/LandmarkSearch.vue'
+// import LandmarkSearch from '../components/LandmarkSearch.vue'
 export default {
   components: { 
-    LandmarkSearch,
+    // LandmarkSearch,
     AddGoogleMap
    },
 
