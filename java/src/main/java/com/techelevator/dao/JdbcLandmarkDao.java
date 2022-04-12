@@ -43,7 +43,7 @@ public class JdbcLandmarkDao  implements LandmarkDao{
             landmark.setActive(results.getBoolean("isActive"));
             landmark.setLandmarkId(results.getInt("landmarkId"));
             landmark.setName(results.getString("name"));
-
+            
             landmarks.add(landmark);
         }
         return landmarks;
