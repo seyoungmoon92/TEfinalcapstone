@@ -17,6 +17,7 @@
     </div>
     <br />
     <gmap-map :zoom="6" :center="center" style="width: 100%; height: 700px">
+      <!-- Display circle with gmap circle -->
       <gmap-circle
         :center="this.startLocation"
         :options="options"
@@ -42,7 +43,12 @@ export default {
   name: "AddGoogleMap",
   data() {
     return {
+
+      
       radius: 100000,
+
+
+
       options: {
         strokeColor: "#FF0000",
         strokeOpacity: 0.8,
@@ -82,9 +88,7 @@ export default {
           : false;
       });
     },
-    setRadius(){
-      return this.radius2
-    }
+
   },
 
   // Sets center location when loaded
