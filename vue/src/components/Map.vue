@@ -2,10 +2,12 @@
   <div>
     <div>
       <h2>Find Landmarks</h2>
+      <h2>{{locationMarkers[0].position.lat}}</h2>
+      <h2>{{startLocation.lat}}</h2>
       <label>
           <!-- prompts user for location -->
         <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
-        <button @click="addLocationMarker">Add</button>
+        <button @click="setStartingLocation">Add</button>
         
         <button @click="radiusSearch">Radius Test</button>
       </label>
@@ -32,11 +34,16 @@ export default {
   name: "AddGoogleMap",
   data() {
     return {
+      startLocation: {
+      lat: 34.6691514,
+      lng: 135.4327486,
+    },
       center: {
         lat: 36.5605,
         lng: 138.88,
       },
       locationMarkers: [],
+      filteredMarkers: [],
       locPlaces: [],
       existingPlace: null,
     //   empty landmarks array to be populated by axios call
@@ -53,7 +60,14 @@ export default {
           : this.idFilter == landmark.landmarkId;
       });
     },
+    filteredMarkers2 () {
+      return this.locationMarkers.filter((marker) => {
+        return this.compareDistance(this.startLocation, marker) < 100 ? true : false;
+      })
+    },
+  
   },
+  
 
 // Sets center location when loaded
   mounted() {
@@ -81,6 +95,29 @@ export default {
         this.existingPlace = null;
       }
     },
+    setStartingLocation () {
+      if(this.existingPlace) {
+        this.startLocation = {
+          lat: this.existingPlace.geometry.location.lat(),
+          lng: this.existingPlace.geometry.location.lng(),
+        };
+      }
+
+    },
+
+    compareDistance(mk1, mk2) {
+
+
+      var R = 3958.8; // Radius of the Earth in miles
+      var rlat1 = mk1.lat * (Math.PI/180); // Convert degrees to radians
+      var rlat2 = mk2.position.lat * (Math.PI/180); // Convert degrees to radians
+      var difflat = rlat2-rlat1; // Radian difference (latitudes)
+      var difflon = (mk2.position.lng-mk1.lng) * (Math.PI/180); // Radian difference (longitudes)
+
+      var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
+      return d;
+    },
+    
 
     // if location is on it will default center to current location
     locateGeoLocation: function () {
