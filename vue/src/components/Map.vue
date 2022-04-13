@@ -23,7 +23,7 @@
       <gmap-circle
         :center="this.startLocation"
         :options="{fillColor: 'green',fillOpacity:.1}"
-        :radius="50000"
+        :radius="20000"
       >
       </gmap-circle>
       <!-- loops through locationMarkers array to display markers on map -->

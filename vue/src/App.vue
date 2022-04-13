@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <main class="background">
+    <main id="background">
       <router-view />
     </main>
   </div>
@@ -83,7 +83,6 @@ strong {
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #212121;
-  z-index: 999;
 }
 
 header {
@@ -130,6 +129,8 @@ main small {
   height: 100vh;
   width: 100%;
   pointer-events: none;
+  z-index: 999;
+
 }
 #nav-container .bg {
   position: absolute;
@@ -291,6 +292,9 @@ img {
   vertical-align: middle;
   height: auto;
   width: 100%;
+}
+#background {
+  z-index: -1;
 }
 </style>
 
