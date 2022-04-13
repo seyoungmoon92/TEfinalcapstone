@@ -23,12 +23,17 @@
         @click="center = m.position"
       ></gmap-marker>
     </gmap-map>
+
   </div>
+
+
+
+
 </template>
  
 <script>
 import landmarkService from "../services/LandmarkService.js";
-import {gmapApi} from 'vue2-google-maps' // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
+ import {gmapApi} from 'vue2-google-maps' // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
 import { eventBus } from '@/event-bus.js';
 export default {
   name: "AddGoogleMap",
@@ -42,12 +47,7 @@ export default {
         lat: 36.5605,
         lng: 138.88,
       },
-      locationMarkers: [],
-      filteredMarkers: [],
-      locPlaces: [],
-      existingPlace: null,
-    //   empty landmarks array to be populated by axios call
-      landmarks: [],
+
     };
   },
 //   filtered landmark array by ID, will need to change filter parameter
@@ -65,8 +65,9 @@ export default {
         return this.compareDistance(this.startLocation, marker) < 100 ? true : false;
       })
     },
-  
+
   },
+
   
 
 // Sets center location when loaded
@@ -77,6 +78,10 @@ export default {
  
 
   methods: {
+
+
+
+
     //   Works with google maps autocomplete function to find location
     initMarker(loc) {
       this.existingPlace = loc;
