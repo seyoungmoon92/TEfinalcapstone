@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
 
+import com.techelevator.dao.ItineraryDao;
 import com.techelevator.dao.LandmarkDao;
 import com.techelevator.dao.PhotoDao;
+import com.techelevator.model.Itinerary;
 import com.techelevator.model.Landmark;
 import com.techelevator.model.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class LandmarkController {
     @Autowired
     private PhotoDao photoDao;
 
+    @Autowired
+    private ItineraryDao itineraryDao;
+
 
     @RequestMapping(path = "/landmarks", method = RequestMethod.GET)
     public List<Landmark> getLandmarks() {
@@ -37,6 +42,9 @@ public class LandmarkController {
     public List<Photo> getPhotosById(@PathVariable int id) {
         return photoDao.retrievePhotosById(id);
     }
+
+    @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.GET)
+    public List<Itinerary> getItineraries(@PathVariable int id) { return itineraryDao.retrieveItinerariesById(id); }
 
 
 

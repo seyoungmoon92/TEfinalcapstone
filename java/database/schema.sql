@@ -34,6 +34,18 @@ CREATE TABLE landmarks (
 
 );
 
+CREATE TABLE itineraries (
+    itineraryPk serial,
+    itineraryId int,
+    itineraryName varchar(50) not null,
+    itineraryStart varchar(100) not null,
+    landmarkId int,
+
+    CONSTRAINT pk_itineraries PRIMARY KEY (itineraryPk),
+    CONSTRAINT fk_photos_landmarkId FOREIGN KEY (landmarkId) REFERENCES landmarks(landmarkId)
+
+);
+
 CREATE TABLE photos (
 
     photoId serial,
@@ -63,6 +75,12 @@ INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (5,5,'https://cdn7.jap
 
 -- Add Admin User
 INSERT INTO users (username,password_hash,role) VALUES ('testadmin','$2a$10$Vz4hb4fnuCQ2wk2Ytc5VP.fathuJdHiz0OuWHy6vc36pwaIvV3WVy','ROLE_ADMIN');
+
+--Itinerary Dummy Data
+INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart, landmarkId) VALUES (1, 1, 'Tokyo Summer Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', 1);
+INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart, landmarkId) VALUES (2, 1, 'Tokyo Summer Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', 2);
+INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart, landmarkId) VALUES (3, 2, 'Tokyo Spring Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', 2);
+
 
 
 
