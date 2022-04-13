@@ -23,7 +23,7 @@ export default {
   components: { 
     // LandmarkSearch,
     AddGoogleMap,
-    LandmarkCard
+    LandmarkCard,
    },
    methods: {
      hideMap() {
