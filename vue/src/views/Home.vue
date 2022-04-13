@@ -1,7 +1,7 @@
 <template>
   <body>
     <img class="background" />
-    <h1 class="content">Discover Japan</h1>
+    <h1 class="content">Discover Tokyo</h1>
     <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button btnfos btnfos-2">Start Your Journey</router-link>
   </body>
 </template>
@@ -20,7 +20,7 @@ img {
   z-index: -1;
   /* The image used */
   display: flex;
-  background-image: url("https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2092&q=80");
+  background-image: url("https://images.unsplash.com/photo-1604928141064-207cea6f571f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80");
 
   /* Full height */
   height: 100%;
@@ -43,7 +43,7 @@ img {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 40%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -57,8 +57,8 @@ img {
 	cursor: pointer;
 	outline: inherit;
   font-family: 'Roboto Mono';
-  font-weight: 500;
-  font-size: 2rem;
+  font-weight: 550;
+  font-size: 2.3rem;
   margin: 0 10px 0;
   border-radius: 5px;
   height: 4%;
@@ -66,7 +66,7 @@ img {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 48%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -160,7 +160,7 @@ h1 {
   /* font-size: 16px; */
   /* font-weight: 400; */
   line-height: 45px;
-  max-width: 34.5rem;
+  max-width: 39rem;
   margin: 0 auto 2em;
   /* position: relative; */
   text-transform: uppercase;
