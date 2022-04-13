@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="map">
     <div>
       <h2>Find Landmarks</h2>
       <label >Input your desired search radius: 
@@ -223,3 +223,15 @@ export default {
   },
 };
 </script>
+
+
+
+<style scoped>
+.map {
+  z-index: -1;
+}
+
+.gmap-map {
+  z-index: -1;
+}
+</style>

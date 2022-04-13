@@ -83,6 +83,7 @@ strong {
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #212121;
+  z-index: 999;
 }
 
 header {
@@ -207,6 +208,7 @@ main small {
   transition: transform 0.3s;
   will-change: transform;
   contain: paint;
+  z-index: 999;
 }
 
 #nav-content ul {
