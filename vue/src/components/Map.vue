@@ -2,16 +2,18 @@
   <div>
     <div>
       <h2>Find Landmarks</h2>
-      <label>
+      <label >Input your desired search radius: 
         <input
           class="form-control search_radius mb-4"
           v-model="radius"
-          type="text"
+          type="number"
           placeholder="search radius"
         />
+        Input your starting location.
         <!-- prompts user for location -->
-        <gmap-autocomplete placeholder="Enter Starting Location" @place_changed="initMarker"></gmap-autocomplete>
-        <button @click="setStartingLocation">Add</button>
+        <gmap-autocomplete placeholder="Starting Location" @place_changed="initMarker"></gmap-autocomplete>
+        <button @click="setStartingLocation">Set</button> 
+        <p>Current starting location is: {{startLocationName}} </p>
       </label>
       <br />
     </div>
@@ -20,8 +22,8 @@
       <!-- Display circle with gmap circle -->
       <gmap-circle
         :center="this.startLocation"
-        :options="options"
-        :radius="this.radius"
+        :options="{fillColor: 'green',fillOpacity:.1}"
+        :radius="50000"
       >
       </gmap-circle>
       <!-- loops through locationMarkers array to display markers on map -->
@@ -52,10 +54,7 @@ export default {
     return {
 
       
-      radius: 100000,
-
-
-
+      radius: 5000,
       options: {
         strokeColor: "#FF0000",
         strokeOpacity: 0.8,
@@ -66,6 +65,7 @@ export default {
       startLocation: {
        
       },
+      startLocationName: 'Not selected',
       center: {
         lat: 36.5605,
         lng: 138.88,
@@ -77,6 +77,8 @@ export default {
       existingPlace: null,
       //   empty landmarks array to be populated by axios call
       landmarks: [],
+
+
 
     };
   },
@@ -92,7 +94,7 @@ export default {
     },
     filteredMarkers() {
       return this.locationMarkers.filter((marker) => {
-        return this.compareDistance(this.startLocation, marker) <= (this.radius/1000)
+        return this.compareDistance(this.startLocation, marker) <= (this.radius)
           ? true
           : false;
       });
@@ -136,17 +138,18 @@ export default {
     },
     setStartingLocation() {
       if (this.existingPlace) {
+        //Grabs the lat and lng of the entered address. 
         this.startLocation = {
           lat: this.existingPlace.geometry.location.lat(),
           lng: this.existingPlace.geometry.location.lng(),
         };
+        //Centers map on starting position
+        this.center = this.startLocation;
+        //Set the starting location text
+        this.startLocationName = this.existingPlace.formatted_address;
       }
     },
-    // setRadius(){
-    //   return this.radius2
-    // },
    
-
     compareDistance(mk1, mk2) {
       var R = 3958.8; // Radius of the Earth in miles
       var rlat1 = mk1.lat * (Math.PI / 180); // Convert degrees to radians
@@ -186,7 +189,7 @@ export default {
     });
     this.locateGeoLocation();
     landmarkService.search().then((response) => {
-      this.landmarks = response.data; // response data contains my JSON - array of homes that came back from the server
+      this.landmarks = response.data; 
     });
 
     // hardcoded coordinates for pre-existing markers

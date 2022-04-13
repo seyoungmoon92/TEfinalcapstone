@@ -1,15 +1,33 @@
 !<template>
-  <div>
+  <div func: this.updateLandmarks> 
+    <button @click="updateLandmarks">Update Landmarks</button> 
+    <!-- <div>
+      <h2>Find Landmarks</h2>
+      <label >Input your desired search radius: 
+        <input
+          class="form-control search_radius mb-4"
+          v-model="radius"
+          type="number"
+          placeholder="search radius"
+        />
+        Please input your starting location.
+
+         <gmap-autocomplete placeholder="Starting Location" @place_changed="initMarker"></gmap-autocomplete>
+        <button @click="setStartingLocation">Set</button> 
+        <p>Current starting location is: {{startLocationName}} </p>
+      </label>
+      <br />
+    </div> -->
     <div class="center">
-      <div class="property-card">
+      <div v-for='landmark in landmarks' v-bind:key="landmark.id" class="property-card">
         <a href="#">
           <div class="property-image">
             <div class="property-image-title"></div></div
         ></a>
         <div class="property-description">
-          <h5>{{landmarks[0].name}}</h5>
+          <h5>{{landmark.name}}</h5>
           <p>
-            {{landmarks[0].description}}
+            {{landmark.description}}
           </p>
         </div>
         <a href="#">
@@ -32,38 +50,97 @@ import photoService from "../services/PhotoService.js";
 
 export default {
     name:'landmark-card',
+    methods: {
+      updateLandmarks() {
+        for(let i = 0; i < this.landmarks.length; i ++) {
+          this.$set(this.landmarks[i], 'photoUrl', this.photos[i].photoUrl);
+          this.$set(this.landmarks[i], 'location', this.locationMarkers[i].position)
+        }
+      },
+    setStartingLocation() {
+      if (this.existingPlace) {
+        //Grabs the lat and lng of the entered address. 
+        this.startLocation = {
+          lat: this.existingPlace.geometry.location.lat(),
+          lng: this.existingPlace.geometry.location.lng(),
+        };
+        //Centers map on starting position
+        this.center = this.startLocation;
+        //Set the starting location text
+        this.startLocationName = this.existingPlace.formatted_address;
+      }
+    }
+    },
     data() {
         return {
             idFilter: "",
             landmarks: [],
-            landmarksWithUrl: [],
             photos: [],
             filteredPhotos: [],
-        };
+            locationMarkers: [],
+            radius: 5000,
+            startLocation: {
+       
+            },
+            startLocationName: 'Not selected'
+            };
     },
-    methods: {
 
-    },
     created() {
-            photoService.search().then((response) => {
-            this.photos = response.data;
-            });
-            landmarkService.search().then((response) => {
-            this.landmarks = response.data;
-            this.landmarks.photoUrl = "test";
-            });
-            this.landmarksWithUrl = this.landmarks;
-            for(let i = 0; i < this.landmarks.length; i ++) {
-                this.landmarksWithUrl[i] = this.landmarks[i];
-            }
-            for(let i = 0; i < this.photos.length; i++) {
-                this.landmarksWithUrl[i].photoUrl = "test";
-            }
-
-            
+        photoService.search().then((response) => {
+        this.photos = response.data;
+        });
+        landmarkService.search().then((response) => {
+        this.landmarks = response.data;
+        });
+        
 
 
+        //Hardcoded Coordinates
+        const chureitoPagoda = {
+          lat: 35.5012626,
+          lng: 138.8013852,
+        };
+        const ghibli = {
+          lat: 35.696238,
+          lng: 139.5704317,
+        };
+        const fushimiInariShrine = {
+          lat: 34.9671402,
+          lng: 135.7726717,
+        };
+        const tokyoNatMuseum = {
+          lat: 35.7188351,
+          lng: 139.7765215,
+        };
+        const univStudioJapan = {
+          lat: 34.6691514,
+          lng: 135.4327486,
+        };
+
+        
+        this.locationMarkers.push({ position: chureitoPagoda });
+        this.locationMarkers.push({ position: ghibli });
+        this.locationMarkers.push({ position: fushimiInariShrine });
+        this.locationMarkers.push({ position: tokyoNatMuseum });
+        this.locationMarkers.push({ position: univStudioJapan });
+
+        this.updateLandmarks();
+
+
+
+
+
+
+
+    },
+    beforeMount () {
+      this.updateLandmarks();
     }
+    
+
+
+
 
 };
 </script>
