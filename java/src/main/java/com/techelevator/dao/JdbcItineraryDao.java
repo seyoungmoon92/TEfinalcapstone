@@ -21,6 +21,17 @@ public class JdbcItineraryDao implements ItineraryDao{
     }
 
     @Override
+    public Itinerary createItinerary(Itinerary itinerary){
+
+        String sql = "INSERT INTO itineraries (itineraryName, itineraryStart, user_id) " +
+                "VALUES(?,?,?)";
+
+        jdbcTemplate.update(sql, itinerary.getItineraryName(), itinerary.getItineraryStart(), itinerary.getUserId());
+
+        return itinerary;
+    }
+
+    @Override
     public List<Itinerary> retrieveAllItineraries(Principal principal) {
 
         List<Itinerary> itineraries = new ArrayList<>();

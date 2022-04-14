@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Create Your Itinerary</h1>
+    <h1>Your Itineraries</h1>
     <form v-on:submit.prevent="submitForm" class="ItineraryForm">
       <div class="form-group">
         <label for="itineraryName">Itinerary Name:</label>
@@ -21,22 +21,13 @@
           v-model="itinerary.itineraryStart"
         />
       </div>
-      <div class="form-group">
-        <label for="landmarkId">Landmark ID:</label>
-        <input
-          id="description"
-          type="text"
-          class="form-control"
-          v-model="itinerary.landmarkId"
-        />
-      </div>
 
       <button class="btn btn-submit">Submit</button>
       <button class="btn btn-cancel" type="cancel" v-on:click="cancelForm">
         Cancel
       </button>
     </form>
-    <p>{{this.itinerary}}</p>
+    
   </div>
 </template>
 
@@ -47,18 +38,28 @@ export default {
   name: "create-itinerary",
   data() {
     return {
+      
+      userId: null,
       itinerary: {},
     };
   },
+  created(){
+    this.userId = this.$store.state.user.id;
+    this.itinerary.userId = this.userId;
+  },
   methods: {
     submitForm() {
+      // this.user = this.$store.state.user;
+
+     
+
       //call the service to add the home
       itineraryService
-        .addItinerary(this.itinerary)
+        .createItinerary(this.itinerary)
         .then((response) => {
           if (response.status === 201 || response.status === 200) {
             //success
-            this.$router.push("landmarks");
+            console.log("success");
           }
         })
         .catch((error) => {

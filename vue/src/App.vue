@@ -26,7 +26,7 @@
               >Add Landmark</router-link
             >
           </li>
-          <li><router-link v-bind:to="{ name: 'create-itinerary' }" v-if="$store.state.token != ''">Create an Itinerary</router-link></li>
+          <li><router-link v-bind:to="{ name: 'itinerary' }" v-if="$store.state.token != ''">Itineraries</router-link></li>
 
           <li>
             <router-link
