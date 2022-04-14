@@ -1,11 +1,13 @@
 package com.techelevator.model;
 
 public class Itinerary {
+
     private int itineraryPk;
     private int itineraryId;
     private String itineraryName = "";
     private String itineraryStart = "";
     private int landmarkId;
+    private int userId;
 
 
 
@@ -50,5 +52,14 @@ public class Itinerary {
 
     public void setLandmarkId(int landmarkId) {
         this.landmarkId = landmarkId;
+    }
+
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

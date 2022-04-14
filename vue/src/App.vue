@@ -22,11 +22,12 @@
           <li>
             <router-link
               v-bind:to="{ name: 'add-landmark' }"
-              v-if="$store.state.token != ''"
+              v-if="$store.state.token == 'fuasdygf9a87tfoausdhf'"
               >Add Landmark</router-link
             >
           </li>
-          <li><a href="#0">Create an Itinerary</a></li>
+          <li><router-link v-bind:to="{ name: 'create-itinerary' }" v-if="$store.state.token != ''">Create an Itinerary</router-link></li>
+
           <li>
             <router-link
               v-bind:to="{ name: 'login' }"
@@ -65,7 +66,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
 
 * {
   outline: none;
@@ -130,7 +131,6 @@ main small {
   width: 100%;
   pointer-events: none;
   z-index: 999;
-
 }
 #nav-container .bg {
   position: absolute;

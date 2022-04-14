@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ItineraryDao {
 
-    List<Itinerary> retrieveItinerariesById(int itineraryId);
-    void addItinerary (Itinerary itinerary);
+    List<Itinerary> retrieveItinerariesByName(String itineraryName);
+    Itinerary addItinerary (Itinerary itinerary);
     void deleteItinerary (Itinerary itinerary);
 }

@@ -21,14 +21,14 @@ public class JdbcItineraryDao implements ItineraryDao{
     }
 
     @Override
-    public List<Itinerary> retrieveItinerariesById(int itineraryId) {
+    public List<Itinerary> retrieveItinerariesByName(String itineraryName) {
 
         List<Itinerary> itineraries = new ArrayList<>();
 
-        String sql = "SELECT * FROM itineraries WHERE itineraryId = ?";
+        String sql = "SELECT * FROM itineraries WHERE itineraryName = ?";
 
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, itineraryId);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, itineraryName);
 
         while (results.next()) {
 
@@ -39,6 +39,7 @@ public class JdbcItineraryDao implements ItineraryDao{
             itinerary.setItineraryName(results.getString("itineraryName"));
             itinerary.setItineraryStart(results.getString("itineraryStart"));
             itinerary.setLandmarkId(results.getInt("landmarkId"));
+            itinerary.setUserId(results.getInt("userId"));
 
 
             itineraries.add(itinerary);
@@ -48,8 +49,15 @@ public class JdbcItineraryDao implements ItineraryDao{
     }
 
     @Override
-    public void addItinerary(Itinerary itinerary) {
+    public Itinerary addItinerary(Itinerary itinerary) {
 
+
+        String sql = "INSERT INTO itineraries(itineraryName, itineraryStart, landmarkId) " +
+                "VALUES(?, ?, ?)";
+
+        jdbcTemplate.update(sql, itinerary.getItineraryName(), itinerary.getItineraryStart(), itinerary.getLandmarkId());
+
+        return itinerary;
     }
 
     @Override

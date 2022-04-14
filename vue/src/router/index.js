@@ -7,6 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import LandmarkSearch from '../views/LandmarkSearchView.vue'
 import AddLandmark from '../views/AddLandmarkView.vue'
+import CreateItinerary from '../views/CreateItineraryView.vue'
+import Itinerary from '../views/ItineraryView.vue'
 
 Vue.use(Router)
 
@@ -69,6 +71,22 @@ const router = new Router({
       component: AddLandmark,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/createItinerary",
+      name: "create-itinerary",
+      component: CreateItinerary,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/itinerary",
+      name: "itinerary",
+      component: Itinerary,
+      meta: {
+        requiresAuth: false
       }
     },
   ]
