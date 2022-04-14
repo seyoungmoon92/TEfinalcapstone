@@ -2,6 +2,7 @@ BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
+DROP TABLE IF EXISTS itineraries;
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -35,15 +36,13 @@ CREATE TABLE landmarks (
 );
 
 CREATE TABLE itineraries (
-    itineraryPk serial,
-    itineraryId int,
+    itineraryId serial,
     itineraryName varchar(50) not null,
     itineraryStart varchar(100) not null,
-    landmarkId int,
+    landmarkList varchar(25),
     user_id int,
 
-    CONSTRAINT pk_itineraries PRIMARY KEY (itineraryPk),
-    CONSTRAINT fk_photos_landmarkId FOREIGN KEY (landmarkId) REFERENCES landmarks(landmarkId),
+    CONSTRAINT pk_itineraries PRIMARY KEY (itineraryId),
     CONSTRAINT fk_photos_user_Id FOREIGN KEY (user_id) REFERENCES users(user_id)
 
 );
@@ -79,9 +78,9 @@ INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (5,5,'https://cdn7.jap
 INSERT INTO users (username,password_hash,role) VALUES ('testadmin','$2a$10$Vz4hb4fnuCQ2wk2Ytc5VP.fathuJdHiz0OuWHy6vc36pwaIvV3WVy','ROLE_ADMIN');
 
 --Itinerary Dummy Data
-INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart, landmarkId, user_id) VALUES (997, 1, 'Tokyo Summer Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', 1, 3);
-INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart, landmarkId, user_id) VALUES (998, 1, 'Tokyo Summer Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', 2, 3);
-INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart, landmarkId, user_id) VALUES (999, 2, 'Tokyo Spring Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', 2, 3);
+INSERT INTO itineraries (itineraryId, itineraryName, itineraryStart, landmarkList, user_id) VALUES (1, 'Tokyo Summer Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', '1,2,3', 3);
+INSERT INTO itineraries (itineraryId, itineraryName, itineraryStart, landmarkList, user_id) VALUES (2, 'Tokyo Fall Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', '4,5', 3);
+INSERT INTO itineraries (itineraryId, itineraryName, itineraryStart, landmarkList, user_id) VALUES (3, 'Tokyo Spring Vacay', 'Hanedakuko, Ota City, Tokyo 144-0041, Japan', '2,3,4,5', 3);
 
 
 
@@ -89,7 +88,6 @@ INSERT INTO itineraries (itineraryPk, itineraryId, itineraryName, itineraryStart
 
 -- UPDATING SEQUENCES SO THERE ARE NO CLASHES WHEN APP RUNS WITH EXISTING KEYS...
 ALTER SEQUENCE landmarks_landmarkId_seq RESTART WITH 100;
-
 
 
 
