@@ -1,10 +1,15 @@
 <template>
   <div>
-    <!-- <h1>{{ itinerary }}</h1> -->
-    <div v-for="itinerary in itineraryList" v-bind:key="itinerary.itineraryId">
-      <h3>{{itinerary.itineraryName}}</h3>
-      <button></button>
+    
+    <div v-for="itinerary in itineraries" v-bind:key="itinerary.itineraryId">
+      <p>-------------------------------</p>
+      <h3>{{itinerary.itineraryName}}</h3>      
+      <button v-on:click.prevent="deleteItinerary(itinerary.itineraryId)">Delete</button>
+      <p>Start: {{itinerary.itineraryStart}}</p>
+      <p>{{itinerary.landmarkList}}</p>
+      <p>-------------------------------</p>
     </div>
+    
   </div>
 </template>
 
@@ -12,10 +17,10 @@
 import itineraryService from "../services/ItineraryService.js";
 
 export default {
-  name: "itinerary",
+  name: "itineraries",
   data() {
     return {
-      itinerary: {},
+      
       itineraries: {},
     };
   },
@@ -37,7 +42,12 @@ export default {
   },
 
   methods: {
-    
+    deleteItinerary(id){
+      itineraryService.deleteItinerary(id).then((response) => {
+        console.log(response);
+        this.$router.go();
+      });
+    }
   }
 };
 </script>

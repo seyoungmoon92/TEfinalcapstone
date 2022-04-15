@@ -21,7 +21,10 @@ export default {
 
    addLandmark(itinerary) {
       return axios.put('/itineraries', itinerary)
+   },
+
+   deleteItinerary(id) {
+      return axios.delete(`/itineraries/${id}`)
    }
-   
 
 }
