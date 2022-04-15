@@ -96,6 +96,7 @@ header {
   justify-content: center;
   align-items: center;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  z-index: 999;
 }
 
 main {
