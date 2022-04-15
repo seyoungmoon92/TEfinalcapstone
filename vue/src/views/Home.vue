@@ -181,6 +181,8 @@ h1 {
   }
 }
 
+/* IGNORE ALL THE STYLING BELOW */
+
 .btnfos {
   color: rgb(255, 255, 255);
   cursor: pointer;
@@ -212,6 +214,8 @@ h1 {
     margin-right: 0;
   }
 }
+
+
 
 .btnfos-2 {
   letter-spacing: 0;
