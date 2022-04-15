@@ -7,7 +7,9 @@
       
       <p>Start: {{itinerary.itineraryStart}}</p>
       <p>{{itinerary.landmarkList}}</p>
+      <!-- <button v-on:click.prevent="addLandmark(itinerary.itineraryId)">Add Landmark</button> -->
       <p>-------------------------------</p>
+      
     </div>
     
   </div>
@@ -47,7 +49,15 @@ export default {
         console.log(response);
         this.$router.go();
       });
+    },
+    
+    addLandmark(itinerary, landmarkList) {
+      itineraryService.addLandmark(itinerary, landmarkList).then((response) => {
+        console.log(response);
+        this.$router.go();
+      })
     }
+    
   }
 };
 </script>

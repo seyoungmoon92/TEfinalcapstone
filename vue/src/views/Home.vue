@@ -35,7 +35,7 @@ img {
 }
 
 .content {
-  font-size: 3rem;
+  font-size: 4.5rem;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -52,13 +52,14 @@ img {
   background: none;
 	color: inherit;
 	border: none;
+  
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
   font-family: 'Roboto Mono';
   font-weight: 550;
-  font-size: 2.3rem;
+  font-size: 2.8rem;
   margin: 0 10px 0;
   border-radius: 5px;
   height: 4%;
@@ -66,7 +67,7 @@ img {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 30%;
+  top: 32%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
