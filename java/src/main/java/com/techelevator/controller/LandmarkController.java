@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -45,12 +46,27 @@ public class LandmarkController {
         return photoDao.retrievePhotosById(id);
     }
 
-    @RequestMapping(path = "/itineraries/{name}", method = RequestMethod.GET)
-    public List<Itinerary> getItineraries(@PathVariable String name) { return itineraryDao.retrieveItinerariesByName(name); }
+
+
+
+
+//      Itinerary Functions
+
+
+    @RequestMapping(path = "/itineraries", method = RequestMethod.POST)
+    public Itinerary createItinerary(@RequestBody Itinerary itinerary) { return itineraryDao.createItinerary(itinerary); }
+
+    @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.GET)
+    public Itinerary getItinerary(@PathVariable int id) { return itineraryDao.retrieveItineraryById(id); }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/itineraries", method = RequestMethod.POST)
-    public Itinerary addItinerary(@RequestBody Itinerary itinerary) { return itineraryDao.addItinerary(itinerary); }
+    @RequestMapping(path = "/itineraries", method = RequestMethod.GET)
+    public List<Itinerary> getAllItineraries(Principal principal) { return itineraryDao.retrieveAllItineraries(principal); }
+
+    @RequestMapping(path = "/itineraries", method = RequestMethod.PUT)
+    public void updateItinerary(@RequestBody Itinerary itinerary, String landmarkList) {
+        itineraryDao.updateItinerary(itinerary, landmarkList);
+    }
 
 
 

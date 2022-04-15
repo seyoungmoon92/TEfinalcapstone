@@ -2,11 +2,10 @@ package com.techelevator.model;
 
 public class Itinerary {
 
-    private int itineraryPk;
     private int itineraryId;
     private String itineraryName = "";
     private String itineraryStart = "";
-    private int landmarkId;
+    private String landmarkList = "";
     private int userId;
 
 
@@ -14,13 +13,6 @@ public class Itinerary {
 
 
 //    Getters + Setters
-    public int getItineraryPk() {
-        return itineraryPk;
-    }
-
-    public void setItineraryPk(int itineraryPk) {
-        this.itineraryPk = itineraryPk;
-    }
 
     public int getItineraryId() {
         return itineraryId;
@@ -46,14 +38,13 @@ public class Itinerary {
         this.itineraryStart = itineraryStart;
     }
 
-    public int getLandmarkId() {
-        return landmarkId;
+    public String getLandmarkList() {
+        return landmarkList;
     }
 
-    public void setLandmarkId(int landmarkId) {
-        this.landmarkId = landmarkId;
+    public void setLandmarkList(String landmarkList) {
+        this.landmarkList = landmarkList;
     }
-
 
     public int getUserId() {
         return userId;

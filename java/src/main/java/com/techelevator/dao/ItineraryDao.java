@@ -2,11 +2,17 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Itinerary;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface ItineraryDao {
 
-    List<Itinerary> retrieveItinerariesByName(String itineraryName);
-    Itinerary addItinerary (Itinerary itinerary);
+    Itinerary createItinerary(Itinerary itinerary);
+
+    List<Itinerary> retrieveAllItineraries(Principal principal);
+
+    Itinerary retrieveItineraryById(int itineraryId);
+
+    void updateItinerary (Itinerary itinerary, String landmarklist);
     void deleteItinerary (Itinerary itinerary);
 }
