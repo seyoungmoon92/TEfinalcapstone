@@ -7,26 +7,7 @@
           id="landmarkId"
           type="text"
           class="form-control"
-          v-model="landmark.landmarkId"
-        />
-      </div>
-      
-      <div class="form-group">
-        <label for="location">Location:</label>
-        <input
-          id="location"
-          type="text"
-          class="form-control"
-          v-model="landmark.location"
-        />
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <input
-          id="description"
-          type="text"
-          class="form-control"
-          v-model="landmark.description"
+          v-model="itinerary.landmarkList"
         />
       </div>
      
@@ -39,7 +20,7 @@
 </template>
 
 <script>
-import landmarkService from "../services/LandmarkService.js";
+import itineraryService from "../services/ItineraryService.js";
 
 export default {
   name: "add-landmark",
@@ -53,7 +34,7 @@ export default {
   methods: {
     submitForm() {
       //call the service to add the home
-      landmarkService
+      itineraryService
         .addLandmark(this.landmark)
         .then((response) => {
           if (response.status === 201 || response.status === 200) {

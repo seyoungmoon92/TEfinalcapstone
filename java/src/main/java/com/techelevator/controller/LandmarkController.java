@@ -48,6 +48,14 @@ public class LandmarkController {
 
 
 
+
+
+//      Itinerary Functions
+
+
+    @RequestMapping(path = "/itineraries", method = RequestMethod.POST)
+    public Itinerary createItinerary(@RequestBody Itinerary itinerary) { return itineraryDao.createItinerary(itinerary); }
+
     @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.GET)
     public Itinerary getItinerary(@PathVariable int id) { return itineraryDao.retrieveItineraryById(id); }
 
@@ -55,7 +63,7 @@ public class LandmarkController {
     @RequestMapping(path = "/itineraries", method = RequestMethod.GET)
     public List<Itinerary> getAllItineraries(Principal principal) { return itineraryDao.retrieveAllItineraries(principal); }
 
-    @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/itineraries", method = RequestMethod.PUT)
     public void updateItinerary(@RequestBody Itinerary itinerary, String landmarkList) {
         itineraryDao.updateItinerary(itinerary, landmarkList);
     }

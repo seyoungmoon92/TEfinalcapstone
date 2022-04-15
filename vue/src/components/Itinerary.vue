@@ -1,5 +1,8 @@
 <template>
-  <h1>{{itinerary}}</h1>
+  <div>
+    <!-- <h1>{{ itinerary }}</h1> -->
+    <h2>{{ itineraries }}</h2>
+  </div>
 </template>
 
 <script>
@@ -10,14 +13,18 @@ export default {
   data() {
     return {
       itinerary: {},
+      itineraries: {},
     };
   },
 
   created() {
-      itineraryService.getItinerary(2).then((response) => {
-        this.itinerary = response.data;
-      }),
-    console.log("success");
+    // itineraryService.getItinerary(2).then((response) => {
+    //   this.itinerary = response.data;
+    // }),
+      console.log("success");
+    itineraryService.getAllItineraries().then((response) => {
+      this.itineraries = response.data;
+    });
   },
 };
 </script>

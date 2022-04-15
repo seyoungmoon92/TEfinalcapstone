@@ -88,7 +88,7 @@ INSERT INTO itineraries (itineraryId, itineraryName, itineraryStart, landmarkLis
 
 -- UPDATING SEQUENCES SO THERE ARE NO CLASHES WHEN APP RUNS WITH EXISTING KEYS...
 ALTER SEQUENCE landmarks_landmarkId_seq RESTART WITH 100;
-
+ALTER SEQUENCE itineraries_itineraryId_seq RESTART WITH 100;
 
 
 COMMIT TRANSACTION;

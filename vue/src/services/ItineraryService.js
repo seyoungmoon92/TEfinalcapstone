@@ -11,8 +11,16 @@ export default {
       return axios.get(`/itineraries/${id}`)   
    },
 
-   addItinerary(itinerary) {
+   createItinerary(itinerary) {
       return axios.post('/itineraries', itinerary)
    },
+
+   getAllItineraries() {
+      return axios.get('/itineraries')
+   },
+
+   addLandmark(itinerary) {
+      return axios.put('/itineraries', itinerary)
+   }
 
 }
