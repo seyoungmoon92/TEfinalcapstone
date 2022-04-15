@@ -1,11 +1,11 @@
 <template>
-  <div class="App"/>
+  <div class ="App"/>
 </template>
 
 <script>
-import MarkerClusterer from '@google/markerclusterer';
+import MarkerClusterer from "@google/markerclusterer";
 
-import gmapsInit from '../../utils/gmaps';
+import gmapsInit from "../../utils/gmaps";
 
 const locations = [
   {
@@ -42,6 +42,7 @@ const locations = [
 
 export default {
   name: `google-map`,
+
   async mounted() {
     try {
       const google = await gmapsInit();
@@ -62,13 +63,12 @@ export default {
         map.setCenter(marker.getPosition());
       };
 
-      const markers = locations
-        .map((location) => {
-          const marker = new google.maps.Marker({ ...location, map });
-          marker.addListener(`click`, () => markerClickHandler(marker));
+      const markers = locations.map((location) => {
+        const marker = new google.maps.Marker({ ...location, map });
+        marker.addListener(`click`, () => markerClickHandler(marker));
 
-          return marker;
-        });
+        return marker;
+      });
 
       // eslint-disable-next-line no-new
       new MarkerClusterer(map, markers, {
@@ -80,6 +80,7 @@ export default {
     }
   },
 };
+
 </script>
 
 <style scoped>
@@ -89,14 +90,12 @@ body {
   padding: 0;
 }
 
-
 .App {
-    height: 50rem;
-    width: 80%;
-    margin: 0 auto;
-    border-style: double;
-    border-width: 12px;
-    border-color: pink;
+  height: 50rem;
+  width: 80%;
+  margin: 0 auto;
+  border-style: double;
+  border-width: 12px;
+  border-color: pink;
 }
-
 </style>
