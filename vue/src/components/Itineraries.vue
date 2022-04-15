@@ -3,8 +3,8 @@
     
     <div v-for="itinerary in itineraries" v-bind:key="itinerary.itineraryId">
       <p>-------------------------------</p>
-      <h3>{{itinerary.itineraryName}}</h3>      
-      <button v-on:click.prevent="deleteItinerary(itinerary.itineraryId)">Delete</button>
+      <h3>{{itinerary.itineraryName}} <button v-on:click.prevent="deleteItinerary(itinerary.itineraryId)">Delete</button></h3>      
+      
       <p>Start: {{itinerary.itineraryStart}}</p>
       <p>{{itinerary.landmarkList}}</p>
       <p>-------------------------------</p>
