@@ -24,12 +24,14 @@
           <div class="property-image" v-bind:style="'background-image:url(' + landmark.photoUrl + ')'">
             <div class="property-image-title"></div></div
         ></a>
+        <a v-bind:href="'/landmarks/' + landmark.landmarkId">
         <div class="property-description">
           <h5>{{landmark.name}}</h5>
           <p>
             {{landmark.description}}
           </p>
         </div>
+        </a>
         <a v-bind:href="'/' + landmark.landmarkId">
           <div class="property-social-icons"></div>
         </a>
@@ -292,6 +294,15 @@ font-size:1.2em;
 {
 opacity:1;
 } */
+a {
+    color: black;
+    text-decoration: none;
+}
 
+a:hover {
+    color:black; 
+    text-decoration:none; 
+    cursor:pointer;  
+}
 
 </style>
