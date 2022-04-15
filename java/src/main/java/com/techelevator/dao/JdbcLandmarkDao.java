@@ -22,6 +22,25 @@ public class JdbcLandmarkDao  implements LandmarkDao{
     }
 
     @Override
+    public Landmark retrieveLandmarkById(int landmarkId) {
+        String sql = "SELECT * FROM landmarks WHERE landmarkId = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, landmarkId);
+        Landmark landmark = new Landmark();
+
+        while(results.next()) {
+
+            landmark.setDescription(results.getString("description"));
+            landmark.setLocation(results.getString("address"));
+            landmark.setRating(results.getInt("rating"));
+            landmark.setActive(results.getBoolean("isActive"));
+            landmark.setLandmarkId(results.getInt("landmarkId"));
+            landmark.setName(results.getString("name"));
+        }
+        return landmark;
+
+    }
+
+    @Override
     public List<Landmark> retrieveLandmarks() {
 
 
@@ -48,6 +67,7 @@ public class JdbcLandmarkDao  implements LandmarkDao{
         }
         return landmarks;
     }
+
 
     @Override
     public void addLandmark(Landmark landmark) {

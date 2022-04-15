@@ -34,7 +34,10 @@ public class LandmarkController {
     public List<Landmark> getLandmarks() {
         return landmarkDao.retrieveLandmarks();
     }
-
+    @RequestMapping(path = "/landmarks/{id}", method = RequestMethod.GET)
+    public Landmark getLandMarkById(@PathVariable int id) {
+        return landmarkDao.retrieveLandmarkById(id);
+    }
 
     @RequestMapping(path = "/photos", method = RequestMethod.GET)
     public List<Photo> getPhotos() {
