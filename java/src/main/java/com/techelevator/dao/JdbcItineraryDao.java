@@ -92,7 +92,10 @@ public class JdbcItineraryDao implements ItineraryDao{
     }
 
     @Override
-    public void deleteItinerary(Itinerary itinerary) {
+    public void deleteItinerary(int itineraryId) {
+
+        String sql = "DELETE FROM itineraries WHERE itineraryId = ?";
+        jdbcTemplate.update(sql, itineraryId);
 
     }
 }

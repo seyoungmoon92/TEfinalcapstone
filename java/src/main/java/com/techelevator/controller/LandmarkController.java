@@ -34,7 +34,10 @@ public class LandmarkController {
     public List<Landmark> getLandmarks() {
         return landmarkDao.retrieveLandmarks();
     }
-
+    @RequestMapping(path = "/landmarks/{id}", method = RequestMethod.GET)
+    public Landmark getLandMarkById(@PathVariable int id) {
+        return landmarkDao.retrieveLandmarkById(id);
+    }
 
     @RequestMapping(path = "/photos", method = RequestMethod.GET)
     public List<Photo> getPhotos() {
@@ -67,6 +70,9 @@ public class LandmarkController {
     public void updateItinerary(@RequestBody Itinerary itinerary, String landmarkList) {
         itineraryDao.updateItinerary(itinerary, landmarkList);
     }
+
+    @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.DELETE)
+    public void deleteItinerary(@PathVariable int id) { itineraryDao.deleteItinerary(id); }
 
 
 

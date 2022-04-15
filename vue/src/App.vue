@@ -26,7 +26,7 @@
               >Add Landmark</router-link
             >
           </li>
-          <li><router-link v-bind:to="{ name: 'itinerary' }" v-if="$store.state.token != ''">Itineraries</router-link></li>
+          <li><router-link v-bind:to="{ name: 'itineraries' }" v-if="$store.state.token != ''">Itineraries</router-link></li>
 
           <li>
             <router-link
@@ -96,6 +96,7 @@ header {
   justify-content: center;
   align-items: center;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  z-index: 999;
 }
 
 main {

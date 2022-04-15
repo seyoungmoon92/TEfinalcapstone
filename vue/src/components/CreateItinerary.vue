@@ -59,7 +59,7 @@ export default {
         .then((response) => {
           if (response.status === 201 || response.status === 200) {
             //success
-            console.log("success");
+            this.$router.go();
           }
         })
         .catch((error) => {
