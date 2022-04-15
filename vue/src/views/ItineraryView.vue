@@ -1,16 +1,16 @@
 <template>
 <div>
   <create-itinerary />
-  <itinerary />
+  <itineraries />
 </div>
   
 </template>
 
 <script>
 import CreateItinerary from '../components/CreateItinerary.vue'
-import Itinerary from '../components/Itinerary.vue'
+import Itineraries from '../components/Itineraries.vue'
 export default {
-  components: { Itinerary, CreateItinerary },
+  components: { Itineraries, CreateItinerary },
 
 }
 </script>

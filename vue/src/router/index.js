@@ -8,8 +8,12 @@ import store from '../store/index'
 import LandmarkSearch from '../views/LandmarkSearchView.vue'
 import AddLandmark from '../views/AddLandmarkView.vue'
 import CreateItinerary from '../views/CreateItineraryView.vue'
+<<<<<<< HEAD
 import Itinerary from '../views/ItineraryView.vue'
 import LandmarkView from '../views/LandmarkView.vue'
+=======
+import Itineraries from '../views/ItineraryView.vue'
+>>>>>>> c4a517e4acc94929a483fe823bde1fb954c10a0f
 
 Vue.use(Router)
 
@@ -91,9 +95,9 @@ const router = new Router({
       }
     },
     {
-      path: "/itinerary",
-      name: "itinerary",
-      component: Itinerary,
+      path: "/itineraries",
+      name: "itineraries",
+      component: Itineraries,
       meta: {
         requiresAuth: false
       }

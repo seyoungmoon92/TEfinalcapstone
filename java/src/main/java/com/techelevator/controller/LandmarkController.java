@@ -71,6 +71,9 @@ public class LandmarkController {
         itineraryDao.updateItinerary(itinerary, landmarkList);
     }
 
+    @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.DELETE)
+    public void deleteItinerary(@PathVariable int id) { itineraryDao.deleteItinerary(id); }
+
 
 
 
