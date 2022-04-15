@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- <h1>{{ itinerary }}</h1> -->
-    <h2>{{ itineraries }}</h2>
+    <div v-for="itinerary in itineraryList" v-bind:key="itinerary.itineraryId">
+      <h3>{{itinerary.itineraryName}}</h3>
+      <button></button>
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,12 @@ export default {
     };
   },
 
+  computed: {
+    itineraryList(){
+      return this.itineraries;
+    }
+  },
+
   created() {
     // itineraryService.getItinerary(2).then((response) => {
     //   this.itinerary = response.data;
@@ -26,6 +35,10 @@ export default {
       this.itineraries = response.data;
     });
   },
+
+  methods: {
+    
+  }
 };
 </script>
 

@@ -22,5 +22,6 @@ export default {
    addLandmark(itinerary) {
       return axios.put('/itineraries', itinerary)
    }
+   
 
 }
