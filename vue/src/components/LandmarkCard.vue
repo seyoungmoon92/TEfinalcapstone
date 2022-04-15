@@ -19,9 +19,9 @@
       <br />
     </div> -->
     <div class="center">
-      <div v-for='landmark in landmarks' v-bind:key="landmark.id" class="property-card">
-        <a href="#">
-          <div class="property-image">
+      <div v-for='(landmark) in landmarks' v-bind:key="landmark.id" class="property-card">
+        <a v-bind:href="'/landmarks/' + landmark.landmarkId">
+          <div class="property-image" v-bind:style="'background-image:url(' + landmark.photoUrl + ')'">
             <div class="property-image-title"></div></div
         ></a>
         <div class="property-description">
@@ -30,7 +30,7 @@
             {{landmark.description}}
           </p>
         </div>
-        <a href="#">
+        <a v-bind:href="'/' + landmark.landmarkId">
           <div class="property-social-icons"></div>
         </a>
       </div>
@@ -52,10 +52,12 @@ export default {
     name:'landmark-card',
     methods: {
       updateLandmarks() {
+        console.log("Update Landmarks", this.landmarks);
         for(let i = 0; i < this.landmarks.length; i ++) {
           this.$set(this.landmarks[i], 'photoUrl', this.photos[i].photoUrl);
           this.$set(this.landmarks[i], 'location', this.locationMarkers[i].position)
         }
+      
       },
     setStartingLocation() {
       if (this.existingPlace) {
@@ -89,9 +91,11 @@ export default {
     created() {
         photoService.search().then((response) => {
         this.photos = response.data;
+          this.updateLandmarks();
         });
         landmarkService.search().then((response) => {
         this.landmarks = response.data;
+          this.updateLandmarks();
         });
         
 
@@ -125,7 +129,7 @@ export default {
         this.locationMarkers.push({ position: tokyoNatMuseum });
         this.locationMarkers.push({ position: univStudioJapan });
 
-        this.updateLandmarks();
+        
 
 
 
@@ -137,6 +141,7 @@ export default {
     beforeMount () {
       this.updateLandmarks();
     }
+    
     
 
 
@@ -159,19 +164,20 @@ body {
 
 h5 {
   margin: 0px;
-  font-size: 1.4em;
-  font-weight: 700;
+  font-size: 1.3em;
+  font-weight: 1200;
 }
 
 p {
-  font-size: 12px;
+  font-size: 1em;
 }
 
 .center {
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -188,6 +194,7 @@ p {
   -ms-flex-direction: column;
   flex-direction: column;
   position: relative;
+
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -207,9 +214,9 @@ p {
   position: Absolute;
   margin-left: -24px;
   top: 0px;
-  -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.9s cubic-bezier(0.645, 0.045, 0.355, 1); */
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tokyo_National_Museum%2C_Honkan_2010.jpg/1200px-Tokyo_National_Museum%2C_Honkan_2010.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -223,30 +230,30 @@ p {
   width: 28em;
   position: absolute;
   bottom: 0em;
-  -webkit-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* -webkit-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1); */
   padding: 0.5em 1em;
   text-align: center;
 }
 
 /* Social Icons */
 
-.property-social-icons {
+/* .property-social-icons {
   width: 1em;
   height: 1em;
   background-color: black;
   position: absolute;
   bottom: 1em;
   left: 1em;
-  -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
+  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1); */
+/* } */ 
 
 /* Property Cards Hover States */
 
-.property-card:hover .property-description {
+/* .property-card:hover .property-description {
   height: 0em;
   padding: 0px 1em;
 }
@@ -254,23 +261,23 @@ p {
   margin-left: -220px;
   height: 36em;
   width: 50em;
-  
+   */
   
 
-}
+/* } */
 
-.property-card:hover .property-social-icons {
+/* .property-card:hover .property-social-icons {
   background-color: white;
 }
 
 .property-card:hover .property-social-icons:hover {
   background-color: blue;
   cursor: pointer;
-}
+} */
 
 
 
-.property-image-title
+/* .property-image-title
 {
 text-align:center;
 position:Relative;
@@ -279,12 +286,12 @@ opacity:0;
 transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
 color:black;
 font-size:1.2em;
-}
+} */
 
-.property-card:hover .property-image-title
+/* .property-card:hover .property-image-title
 {
 opacity:1;
-}
+} */
 
 
 </style>

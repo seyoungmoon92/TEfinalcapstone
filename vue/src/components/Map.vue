@@ -18,6 +18,7 @@
       <br />
     </div>
     <br />
+    <div id= "mapBox">
     <gmap-map :zoom="6" :center="center" style="width: 100%; height: 700px">
       <!-- Display circle with gmap circle -->
       <gmap-circle
@@ -34,6 +35,7 @@
         @click="center = m.position"
       ></gmap-marker>
     </gmap-map>
+    </div>
 
   </div>
 
@@ -45,10 +47,11 @@
 <script>
 import landmarkService from "../services/LandmarkService.js";
 
-import { gmapApi } from "vue2-google-maps"; // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
+//import { gmapApi } from "vue2-google-maps"; // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
 import { eventBus } from "@/event-bus.js";
 
 export default {
+
   name: "AddGoogleMap",
   data() {
     return {
@@ -84,7 +87,6 @@ export default {
   },
   //   filtered landmark array by ID, will need to change filter parameter
   computed: {
-    google: gmapApi,
     filteredLandmarks() {
       return this.landmarks.filter((landmark) => {
         return this.idFilter == ""
@@ -229,9 +231,18 @@ export default {
 <style scoped>
 .map {
   z-index: -1;
+  
 }
 
 .gmap-map {
   z-index: -1;
+  
+}
+
+.mapBox {
+  border-style: double;
+  border-width: 12px;
+  border-color: pink;
+  padding: 20;
 }
 </style>

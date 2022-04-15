@@ -1,9 +1,9 @@
 <template>
 <div>
   <!-- <landmark-search/> -->
-  <div id="map">
-      <button @click="hideMap" >Toggle View (Map/ Card)</button> 
-      <AddGoogleMap v-if=this.showMap />
+  <div>
+      <button class="toggle" @click="hideMap(); updateLandmarks();" >Toggle View (Map/ Card)</button> 
+      <AddGoogleMap id = "map" v-if=this.showMap />
       <landmark-card ref="landmarkCard" v-if=!this.showMap />
    </div>
 </div>
@@ -37,7 +37,12 @@ export default {
 
      update() {
        this.$refs.landmarkCard.updateLandmarks();
-     }
+     },
+    updateLandmarks() {
+      this.$refs.LandmarkCard.updateLandmarks();
+    },
+
+
    }
 
 }
@@ -52,6 +57,15 @@ export default {
   color: #000000;
   margin-top: 50px;
   z-index: -1;
+  width: 80%;
+  margin: 0 auto;
 }
+
+.toggle{
+  float: right;
+  font-size: 1.4rem;
+}
+
+
 
 </style>
