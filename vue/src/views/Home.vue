@@ -2,7 +2,12 @@
   <body>
     <img class="background" />
     <h1 class="content">Discover Tokyo</h1>
-    <router-link v-bind:to="{ name: 'landmark-search' }" tag="button" class="button btnfos btnfos-2">Start Your Journey</router-link>
+    <router-link
+      v-bind:to="{ name: 'landmark-search' }"
+      tag="button"
+      class="button1 button"
+      >Start Your Journey</router-link
+    >
   </body>
 </template>
 
@@ -35,7 +40,7 @@ img {
 }
 
 .content {
-  font-size: 3rem;
+  font-size: 4.5rem;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -50,34 +55,32 @@ img {
 }
 .button {
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-  font-family: 'Roboto Mono';
+  /*color: inherit;
+  border: none;
+
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  font-family: "Roboto Mono";
   font-weight: 550;
-  font-size: 2.3rem;
+  font-size: 2.8rem;
   margin: 0 10px 0;
   border-radius: 5px;
-  height: 4%;
+  height: 4%; */
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 30%;
+  top: 32%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   z-index: 2;
+  font-size: 2.2rem;
 }
 
-
-
-
-
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
 
 h1 {
   font-size: calc(20px + 18vh);
@@ -86,14 +89,12 @@ h1 {
     0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
   color: #fccaff;
   /* text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #ff006a, 0 0 98px #ff0000; */
-    color: #ff006a;
+  color: #ff006a;
   font-family: "Roboto Mono", cursive;
   text-align: center;
   animation: blink 12s infinite;
   -webkit-animation: blink 12s infinite;
 }
-
-
 
 @-webkit-keyframes blink {
   20%,
@@ -111,10 +112,11 @@ h1 {
   54%,
   56%,
   100% {
-/*     color: #fccaff;
+    /*     color: #fccaff;
     text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
       0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
-  text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #fa92bd, 0 0 98px #ff0000;
+    text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd,
+      0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #fa92bd, 0 0 98px #ff0000;
     color: #ffa9ec;
   }
 }
@@ -135,23 +137,51 @@ h1 {
   54%,
   56%,
   100% {
-/*     color: #fccaff;
+    /*     color: #fccaff;
     text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
       0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
-  text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #fa92bd, 0 0 98px #ff0000;
+    text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd,
+      0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #fa92bd, 0 0 98px #ff0000;
     color: #ffd7f2;
   }
 }
 * {
   -moz-box-sizing: inherit;
-       box-sizing: inherit;
+  box-sizing: inherit;
   -webkit-transition-property: all;
-          transition-property: all;
-  -webkit-transition-duration: .6s;
-          transition-duration: .6s;
+  transition-property: all;
+  -webkit-transition-duration: 0.6s;
+  transition-duration: 0.6s;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-timing-function: ease;
 }
+
+.button1 {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+}
+.button1:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+  .button1 {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
+
+/* IGNORE ALL THE STYLING BELOW */
 
 .btnfos {
   color: rgb(255, 255, 255);
@@ -185,6 +215,8 @@ h1 {
   }
 }
 
+
+
 .btnfos-2 {
   letter-spacing: 0;
 }
@@ -197,7 +229,7 @@ h1 {
 .btnfos-2:after,
 .btnfos-2:before {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border: 1px solid rgba(255, 255, 255, 0);
   bottom: 0px;
   content: " ";
@@ -205,17 +237,17 @@ h1 {
   margin: 0 auto;
   position: relative;
   -webkit-transition: all 280ms ease-in-out;
-          transition: all 280ms ease-in-out;
+  transition: all 280ms ease-in-out;
   width: 0;
 }
 
 .btnfos-2:hover:after,
 .btnfos-2:hover:before {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border-color: #fff;
   -webkit-transition: width 350ms ease-in-out;
-          transition: width 350ms ease-in-out;
+  transition: width 350ms ease-in-out;
   width: 70%;
 }
 
@@ -224,5 +256,4 @@ h1 {
   top: 0;
   width: 70%;
 }
-
 </style>
