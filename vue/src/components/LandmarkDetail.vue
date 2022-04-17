@@ -1,7 +1,9 @@
 <template>
   <div>
       <h1> {{landmark.name}} </h1>
-      <p> {{landmark.description}} </p>
+      <p> Address: {{landmark.location}} </p>
+      <p> Description: {{landmark.description}} </p>
+      <!-- <p> Rating: {{landmark.rating}} </p> -->
   </div>
 </template>
 
