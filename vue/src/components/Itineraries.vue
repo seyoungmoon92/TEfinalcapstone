@@ -23,9 +23,9 @@
         <tr>Landmark List: {{ itinerary.landmarkList }}</tr>
         <!-- <edit-itinerary /> -->
         <tr>
-        <div v-if="addLandmark==true" class="field">
+        <div  class="field">
           <label for="landmarkId">Enter Landmark ID </label>
-          <input name="landmarkId" type="text" v-model="landmarkList" />
+          <input name="landmarkId" type="text" v-model="landmarkList[itinerary.itineraryId]" />
         </div>
         <div class="actions">
           <button 
@@ -53,7 +53,7 @@ export default {
     return {
       addLandmark: false,
       itineraries: {},
-      landmarkList: "",
+      landmarkList: [],
     };
   },
 
@@ -83,7 +83,7 @@ export default {
 
     updateItinerary(id) {
       const itinerary = {
-        landmarkList: this.landmarkList,
+        landmarkList: this.landmarkList[id],
       };
       // this.itineraries.find(itinerary => itinerary.itineraryId === this.itinerary.itineraryId);
       this.addLandmark = true;
@@ -91,7 +91,7 @@ export default {
         .updateItinerary(id, itinerary)
         .then((response) => {
           console.log(response);
-          // this.$router.go();
+          this.$router.go();
         });
     },
   },
