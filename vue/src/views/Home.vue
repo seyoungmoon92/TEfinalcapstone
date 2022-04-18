@@ -175,7 +175,7 @@ h1 {
   transition: all 0.2s;
   /* text-decoration: underline; */
   /* width:%; */
-    margin-left:-14%;
+    margin-left:-3%;
     margin-right:1%;
     margin-top: 2em;
 }
@@ -183,8 +183,8 @@ h1 {
   color: ffffff;
   background-color: #000000;
   cursor: pointer;
-   box-shadow: 8px 8px 2px -2px #a5a5a5;
-  transition: all 2s ease;
+   box-shadow: 8px 8px 2px -2px #fa92bd;
+  transition: all 1s ease;
   transform: translateX(-10px);
 }
 @media all and (max-width: 30em) {
