@@ -87,6 +87,9 @@ export default {
       };
       // this.itineraries.find(itinerary => itinerary.itineraryId === this.itinerary.itineraryId);
       this.addLandmark = true;
+      itinerary.landmarkList = (this.landmarkList + this.itineraries[id].landmarkList).split(',').filter(function(item, pos,self) {
+              return self.indexOf(item) == pos;
+           });
       itineraryService
         .updateItinerary(id, itinerary)
         .then((response) => {

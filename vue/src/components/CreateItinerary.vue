@@ -28,7 +28,7 @@
         />
       </div>
 
-      <button class="btn btn-submit">Submit</button>
+      <button class="btn btn-submit" type="submit">Submit</button>
       <button class="btn btn-cancel" type="button" value="cancel" v-on:click="cancelForm">
         Cancel
       </button>
