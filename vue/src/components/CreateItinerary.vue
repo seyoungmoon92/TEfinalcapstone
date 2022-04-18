@@ -1,7 +1,13 @@
 <template>
   <div>
-    <h1>Your Itineraries</h1>
-    <form v-on:submit.prevent="submitForm" class="ItineraryForm">
+    <button
+      id="show-form-button"
+      href="#"
+      v-if="showForm === false"
+      v-on:click.prevent="showForm = true"
+      >CREATE ITINERARY</button
+    >
+    <form v-on:submit.prevent="submitForm" v-if="showForm === true">
       <div class="form-group">
         <label for="itineraryName">Itinerary Name: </label>
         <input
@@ -23,11 +29,10 @@
       </div>
 
       <button class="btn btn-submit">Submit</button>
-      <button class="btn btn-cancel" type="cancel" v-on:click="cancelForm">
+      <button class="btn btn-cancel" type="button" value="cancel" v-on:click="cancelForm">
         Cancel
       </button>
     </form>
-    
   </div>
 </template>
 
@@ -38,20 +43,18 @@ export default {
   name: "create-itinerary",
   data() {
     return {
-      
+      showForm: false,
       userId: null,
       itinerary: {},
     };
   },
-  created(){
+  created() {
     this.userId = this.$store.state.user.id;
     this.itinerary.userId = this.userId;
   },
   methods: {
     submitForm() {
       // this.user = this.$store.state.user;
-
-     
 
       //call the service to add the home
       itineraryService
@@ -70,10 +73,34 @@ export default {
     },
     cancelForm() {
       this.itinerary = {};
+      this.showForm = false;
+      this.$router.go();
     },
+    
   },
 };
 </script>
 
-<style>
+<style scoped>
+#show-form-button{
+  justify-content: center;
+  font-size: 1.3rem;
+  border-width: 1px;
+  background-color: rgb(250, 206, 213);
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+/* .form-group {
+  padding: 5px;
+} */
+.btn {
+  margin: 5px;
+  padding: 5px;
+}
 </style>
