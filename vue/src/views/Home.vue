@@ -6,7 +6,7 @@
       v-bind:to="{ name: 'landmark-search' }"
       tag="button"
       class="button1 button"
-      >Start Your Journey</router-link
+      >Start Your Journey Here</router-link
     >
   </body>
 </template>
@@ -92,8 +92,8 @@ h1 {
   color: #ff006a;
   font-family: "Roboto Mono", cursive;
   text-align: center;
-  animation: blink 12s infinite;
-  -webkit-animation: blink 12s infinite;
+  animation: blink 5s infinite;
+  -webkit-animation: blink 5s infinite;
 }
 
 @-webkit-keyframes blink {
@@ -159,20 +159,33 @@ h1 {
 .button1 {
   display: inline-block;
   padding: 0.35em 1.2em;
-  border: 0.1em solid #ffffff;
-  margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border: 0.1em;
+  /* margin: 0 0.3em 0.3em 0; */
+ background: linear-gradient(to right, #403b4a, #bbbbb4);
+
+  border-radius: 1em;
+  opacity: 0.9;
+  
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
+  font-weight: 100;
+  color: white;
   text-align: center;
   transition: all 0.2s;
+  /* text-decoration: underline; */
+  /* width:%; */
+    margin-left:-14%;
+    margin-right:1%;
+    margin-top: 2em;
 }
 .button1:hover {
-  color: #000000;
-  background-color: #ffffff;
+  color: ffffff;
+  background-color: #000000;
+  cursor: pointer;
+   box-shadow: 8px 8px 2px -2px #a5a5a5;
+  transition: all 2s ease;
+  transform: translateX(-10px);
 }
 @media all and (max-width: 30em) {
   .button1 {
