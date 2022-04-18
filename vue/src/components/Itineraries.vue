@@ -1,7 +1,8 @@
 <template>
   <div class="itinerarylist">
-    <div class="itinerary"
-      v-for="itinerary in itineraries"
+    <div
+      class="itinerary"
+      v-for="(itinerary, index) in itineraries"
       v-bind:key="itinerary.itineraryId"
     >
       <!-- <p>-------------------------------</p> -->
@@ -9,43 +10,52 @@
         <tr class="itineraryName">
           {{
             itinerary.itineraryName
-          }}<button class="delete" v-on:click.prevent="deleteItinerary(itinerary.itineraryId)">
+          }}<button
+            class="delete"
+            v-on:click.prevent="deleteItinerary(itinerary.itineraryId)"
+          >
             Delete
           </button>
         </tr>
-
         <tr>
           Start:
           {{
             itinerary.itineraryStart
           }}
         </tr>
-        <tr>Landmark List: {{ itinerary.landmarkList }}</tr>
+        <tr>
+          Landmark List:
+        </tr>
+        <tr v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
+          <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
+        </tr>
         <!-- <edit-itinerary /> -->
         <tr>
-        <div  class="field">
-          <label for="landmarkId">Enter Landmark ID </label>
-          <input name="landmarkId" type="text" v-model="landmarkList[itinerary.itineraryId]" />
-        </div>
-        <div class="actions">
-          <button 
-            type="submit"
-            v-on:click="updateItinerary(itinerary.itineraryId)"
-          >
-            Add Landmark
-          </button>
-        </div>
+          <div class="field">
+            <label for="landmarkId">Enter Landmark ID </label>
+            <input
+              name="landmarkId"
+              type="text"
+              v-model="landmarkList[itinerary.itineraryId]"
+            />
+          </div>
+          <div class="actions">
+            <button
+              type="submit"
+              v-on:click="updateItinerary(itinerary.itineraryId, index)"
+            >
+              Add Landmark
+            </button>
+          </div>
         </tr>
       </tbody>
       <!-- <p>-------------------------------</p> -->
     </div>
   </div>
 </template>
-
 <script>
 // import EditItinerary from "../components/EditItinerary.vue";
 import itineraryService from "../services/ItineraryService.js";
-
 export default {
   name: "itineraries",
   // components: { EditItinerary },
@@ -54,15 +64,29 @@ export default {
       addLandmark: false,
       itineraries: {},
       landmarkList: [],
+
+      landmarkNames: [
+        "Tokyo National Museum",
+        "Ghibli Museum",
+        "Sensoji Temple",
+        "Ueno Park",
+        "Meiji Shrine",
+        "Tokyo Skytree",
+        "Kabuki-za Theatre",
+        "Tsukiji Outer Market",
+        "Hachiko Statue",
+        "Nakamise-dori Street",
+      ],
     };
   },
-
   computed: {
-    itineraryList() {
-      return this.itineraries;
+    filteredLandmarkList() {
+      const filteredList = this.landmarkNames.filter(
+        (landmarkId) => landmarkId === this.landmarkNames[0]
+      );
+      return filteredList;
     },
   },
-
   created() {
     // itineraryService.getItinerary(2).then((response) => {
     //   this.itinerary = response.data;
@@ -72,7 +96,6 @@ export default {
       this.itineraries = response.data;
     });
   },
-
   methods: {
     deleteItinerary(id) {
       itineraryService.deleteItinerary(id).then((response) => {
@@ -80,30 +103,48 @@ export default {
         this.$router.go();
       });
     },
-
-    updateItinerary(id) {
-      const itinerary = {
-        landmarkList: this.landmarkList[id],
-      };
-      // this.itineraries.find(itinerary => itinerary.itineraryId === this.itinerary.itineraryId);
+    updateItinerary(id, i) {
       this.addLandmark = true;
-      itineraryService
-        .updateItinerary(id, itinerary)
-        .then((response) => {
-          console.log(response);
-          this.$router.go();
-        });
+      var input = this.itineraries[i].landmarkList + ", " + this.landmarkList;
+      var splitted = input.split(",");
+      var collector = {};
+      for (let i = 0; i < splitted.length; i++) {
+        key = splitted[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        collector[key] = true;
+      }
+      var out = [];
+      for (var key in collector) {
+        out.push(key);
+      }
+      var output = out.join(",");
+      const itinerary = {
+        landmarkList: "," + output,
+      };
+      itineraryService.updateItinerary(id, itinerary).then((response) => {
+        console.log(response);
+        this.$router.go();
+      });
+    },
+    hasLandmark(id, i) {
+      if (this.itineraries[i].landmarkList == null) {
+        return false;
+      }
+      var landmarks = this.itineraries[i].landmarkList;
+      console.log(landmarks);
+      return landmarks.includes("," + id + ",");
     },
   },
 };
 </script>
-
 <style scoped>
 .itinerarylist {
   margin-left: 40px;
 }
 tr:nth-child(odd) {
   background-color: rgb(238, 238, 238);
+}
+tr:nth-child(even) {
+  background-color: rgb(255, 255, 255);
 }
 .itinerary {
   padding: 15px;
@@ -112,5 +153,6 @@ tr:nth-child(odd) {
   display: inline-flex;
   width: 100%;
   justify-content: space-around;
+  text-decoration: bold;
 }
 </style>
