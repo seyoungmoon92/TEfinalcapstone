@@ -73,7 +73,7 @@ img {
   justify-content: center;
   position: absolute;
   top: 32%;
-  left: 50%;
+  left: 38%;
   /* transform: translate(-50%, -50%); */
   z-index: 2;
   font-size: 2.2rem;
