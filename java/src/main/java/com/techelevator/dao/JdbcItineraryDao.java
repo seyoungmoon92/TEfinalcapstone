@@ -82,12 +82,12 @@ public class JdbcItineraryDao implements ItineraryDao{
     }
 
     @Override
-    public void updateItinerary(int itineraryId, String landmarkList) {
+    public void updateItinerary(int itineraryId, String landmarklist) {
 
 
         String sql = "UPDATE itineraries SET landmarkList = ? WHERE itineraryId = ?;";
 
-        jdbcTemplate.update(sql, landmarkList, itineraryId);
+        jdbcTemplate.update(sql, landmarklist, itineraryId);
 
     }
 

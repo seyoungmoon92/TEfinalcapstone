@@ -1,43 +1,59 @@
 <template>
-  <div>
-    <div
-      v-for="itinerary in itineraries.slice().reverse()"
+  <div class="itinerarylist">
+    <div class="itinerary"
+      v-for="itinerary in itineraries"
       v-bind:key="itinerary.itineraryId"
     >
-      <p>-------------------------------</p>
-      <h3>
-        {{ itinerary.itineraryName }}
-        <button v-on:click.prevent="deleteItinerary(itinerary.itineraryId)">
-          Delete
-        </button>
-      </h3>
+      <!-- <p>-------------------------------</p> -->
+      <tbody>
+        <tr class="itineraryName">
+          {{
+            itinerary.itineraryName
+          }}<button class="delete" v-on:click.prevent="deleteItinerary(itinerary.itineraryId)">
+            Delete
+          </button>
+        </tr>
 
-      <p>Start: {{ itinerary.itineraryStart }}</p>
-      <p>{{ itinerary.landmarkList }}</p>
-      <!-- <div class="field">
-        <label for="landmarkId">Enter Landmark ID </label>
-        <input name="landmarkId" type="text" v-model="landmarkId" />
-      </div>
-      <div class="actions">
-      <button type="submit" v-on:click="updateItinerary(itinerary.itineraryId, landmarkId)">Add Landmark</button>
-    </div> -->
-      <!-- <button v-on:click.prevent="updateItinerary(itinerary.itineraryId, landmarkId)">
-        Add Landmark
-      </button> -->
-      <p>-------------------------------</p>
+        <tr>
+          Start:
+          {{
+            itinerary.itineraryStart
+          }}
+        </tr>
+        <tr>Landmark List: {{ itinerary.landmarkList }}</tr>
+        <!-- <edit-itinerary /> -->
+        <tr>
+        <div v-if="addLandmark==true" class="field">
+          <label for="landmarkId">Enter Landmark ID </label>
+          <input name="landmarkId" type="text" v-model="landmarkList" />
+        </div>
+        <div class="actions">
+          <button 
+            type="submit"
+            v-on:click="updateItinerary(itinerary.itineraryId)"
+          >
+            Add Landmark
+          </button>
+        </div>
+        </tr>
+      </tbody>
+      <!-- <p>-------------------------------</p> -->
     </div>
   </div>
 </template>
 
 <script>
+// import EditItinerary from "../components/EditItinerary.vue";
 import itineraryService from "../services/ItineraryService.js";
 
 export default {
   name: "itineraries",
+  // components: { EditItinerary },
   data() {
     return {
+      addLandmark: false,
       itineraries: {},
-      landmarkId: "",
+      landmarkList: "",
     };
   },
 
@@ -65,15 +81,36 @@ export default {
       });
     },
 
-    updateItinerary(id, landmarkList) {
-      itineraryService.updateItinerary(id, landmarkList).then((response) => {
-        console.log(response);
-        this.$router.go();
-      });
+    updateItinerary(id) {
+      const itinerary = {
+        landmarkList: this.landmarkList,
+      };
+      // this.itineraries.find(itinerary => itinerary.itineraryId === this.itinerary.itineraryId);
+      this.addLandmark = true;
+      itineraryService
+        .updateItinerary(id, itinerary)
+        .then((response) => {
+          console.log(response);
+          // this.$router.go();
+        });
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.itinerarylist {
+  margin-left: 40px;
+}
+tr:nth-child(odd) {
+  background-color: rgb(238, 238, 238);
+}
+.itinerary {
+  padding: 15px;
+}
+.itineraryName {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
+}
 </style>

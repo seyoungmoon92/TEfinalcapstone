@@ -1,7 +1,9 @@
 <template>
 <div>
-  <create-itinerary />
-  <itineraries />
+  <h1>Your Itineraries</h1>
+  <div class="form"><create-itinerary /></div>
+  <div class = "itineraries"><itineraries /></div>
+  
 </div>
   
 </template>
@@ -15,6 +17,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+h1 {
+  text-align: center;
+  font-size: 2.3rem;
+}
+.form {
+  text-align: center;
+}
+
 
 </style>

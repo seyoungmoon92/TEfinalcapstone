@@ -53,7 +53,7 @@ export default {
         console.log("Update Landmarks", this.landmarks);
         for(let i = 0; i < this.landmarks.length; i ++) {
           this.$set(this.landmarks[i], 'photoUrl', this.photos[i].photoUrl);
-          this.$set(this.landmarks[i], 'location', this.locationMarkers[i].position)
+          // this.$set(this.landmarks[i], 'location', this.locationMarkers[i].position)
         }
       
       },

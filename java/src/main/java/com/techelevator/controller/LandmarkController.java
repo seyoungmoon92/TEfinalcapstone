@@ -66,9 +66,9 @@ public class LandmarkController {
     @RequestMapping(path = "/itineraries", method = RequestMethod.GET)
     public List<Itinerary> getAllItineraries(Principal principal) { return itineraryDao.retrieveAllItineraries(principal); }
 
-    @RequestMapping(path = "/itineraries", method = RequestMethod.PUT)
-    public void updateItinerary(@PathVariable int id, String landmarkList) {
-        itineraryDao.updateItinerary(id, landmarkList);
+    @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.PUT)
+    public void updateItinerary(@PathVariable int id, @RequestBody Itinerary itinerary) {
+        itineraryDao.updateItinerary(id, itinerary.getLandmarkList());
     }
 
     @RequestMapping(path = "/itineraries/{id}", method = RequestMethod.DELETE)

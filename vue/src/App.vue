@@ -67,6 +67,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 * {
   outline: none;
@@ -80,7 +81,7 @@ strong {
   width: 100%;
   height: 100vh;
   background: #fdfdfd;
-  font-family: "Roboto Mono", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #212121;
@@ -97,6 +98,8 @@ header {
   align-items: center;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   z-index: 999;
+  margin: 0;
+  margin-right: -8px;
 }
 
 main {
@@ -296,6 +299,7 @@ img {
 }
 #background {
   z-index: -1;
+  margin-top: -10px;
 }
 </style>
 
