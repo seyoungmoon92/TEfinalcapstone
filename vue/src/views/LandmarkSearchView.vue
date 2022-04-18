@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-#map {
+/* #map {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,7 +61,7 @@ export default {
   z-index: -1;
   width: 80%;
   margin: 0 auto;
-}
+} */
 
 .toggle{
   float: right;

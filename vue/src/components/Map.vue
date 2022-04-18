@@ -1,8 +1,9 @@
 <template>
-  <div class="map">
+  <div>
     <div>
       <h2>Find Landmarks</h2>
-      <label >Input your desired search radius: 
+      <label
+        >Input your desired search radius:
         <input
           class="form-control search_radius mb-4"
           v-model="radius"
@@ -11,39 +12,56 @@
         />
         Input your starting location.
         <!-- prompts user for location -->
-        <gmap-autocomplete placeholder="Starting Location" @place_changed="initMarker"></gmap-autocomplete>
-        <button @click="setStartingLocation">Set</button> 
-        <p>Current starting location is: {{startLocationName}} </p>
+        <gmap-autocomplete
+          placeholder="Starting Location"
+          @place_changed="initMarker"
+        ></gmap-autocomplete>
+        <button @click="setStartingLocation">Set</button>
+        <p>Current starting location is: {{ startLocationName }}</p>
       </label>
       <br />
     </div>
     <br />
-    <div id= "mapBox">
-    <gmap-map :zoom="10" :center="center" style="width: 100%; height: 700px">
-      <!-- Display circle with gmap circle -->
-      <gmap-circle
-        :center="this.startLocation"
-        :options="{fillColor: 'green',fillOpacity:.1}"
-        :radius="20000"
-      >
-      </gmap-circle>
-      <!-- loops through locationMarkers array to display markers on map -->
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in filteredMarkers"
-        :position="m.position"
-        @click="center = m.position"
-      ></gmap-marker>
-    </gmap-map>
+    <div id="flex">
+      <div id="left-panel"><p></p>
+      <div v-for="landmark in landmarks" v-bind:key="landmark.id" id= "list-view">
+        
+        <button id="column-name">{{landmark.name}}</button>
+
+        
+
+      
+      
+      
+      
+      
+      </div>
+      </div>
+
+      <div class="map">
+        <div id="mapBox">
+          <gmap-map
+            :zoom="9.7"
+            :center="center"
+            style="width: 100%; height: 700px"
+          >
+            <!-- loops through locationMarkers array to display markers on map -->
+            <gmap-marker
+              :key="index"
+              v-for="(m, index) in filteredMarkers"
+              :position="m.position"
+              @click="center = m.position"
+            ></gmap-marker>
+          </gmap-map>
+        </div>
+        
+        
+      </div>
+      <div id="right-panel"><p>Test</p></div>
     </div>
-
   </div>
-
-
-
-
 </template>
- 
+
 <script>
 import landmarkService from "../services/LandmarkService.js";
 
@@ -51,12 +69,9 @@ import landmarkService from "../services/LandmarkService.js";
 import { eventBus } from "@/event-bus.js";
 
 export default {
-
   name: "AddGoogleMap",
   data() {
     return {
-
-      
       radius: 5000,
       options: {
         strokeColor: "#FF0000",
@@ -65,13 +80,11 @@ export default {
         fillColor: "#FF0000",
         fillOpacity: 0.35,
       },
-      startLocation: {
-       
-      },
-      startLocationName: 'Not selected',
+      startLocation: {},
+      startLocationName: "Not selected",
       center: {
-        lat: 36.5605,
-        lng: 138.88,
+        lat: 35.68321,
+        lng: 139.808,
       },
 
       locationMarkers: [],
@@ -80,9 +93,6 @@ export default {
       existingPlace: null,
       //   empty landmarks array to be populated by axios call
       landmarks: [],
-
-
-
     };
   },
   //   filtered landmark array by ID, will need to change filter parameter
@@ -96,30 +106,19 @@ export default {
     },
     filteredMarkers() {
       return this.locationMarkers.filter((marker) => {
-        return this.compareDistance(this.startLocation, marker) <= (this.radius)
+        return this.compareDistance(this.startLocation, marker) <= this.radius
           ? true
           : false;
       });
     },
-
-
-
-
-  
-
-
   },
 
   // Sets center location when loaded
-  // mounted() {
-  //   this.locateGeoLocation();
-  // },
+   mounted() {
+     this.locateGeoLocation();
+  },
 
   methods: {
-
-
-
-
     //   Works with google maps autocomplete function to find location
     initMarker(loc) {
       this.existingPlace = loc;
@@ -140,7 +139,7 @@ export default {
     },
     setStartingLocation() {
       if (this.existingPlace) {
-        //Grabs the lat and lng of the entered address. 
+        //Grabs the lat and lng of the entered address.
         this.startLocation = {
           lat: this.existingPlace.geometry.location.lat(),
           lng: this.existingPlace.geometry.location.lng(),
@@ -151,7 +150,7 @@ export default {
         this.startLocationName = this.existingPlace.formatted_address;
       }
     },
-   
+
     compareDistance(mk1, mk2) {
       var R = 3958.8; // Radius of the Earth in miles
       var rlat1 = mk1.lat * (Math.PI / 180); // Convert degrees to radians
@@ -175,25 +174,31 @@ export default {
     },
 
     // if location is on it will default center to current location
-    // locateGeoLocation: function () {
-    //   navigator.geolocation.getCurrentPosition((res) => {
-    //     this.center = {
-    //       lat: res.coords.latitude,
-    //       lng: res.coords.longitude,
-    //     };
-    //   });
-    // },
+    locateGeoLocation: function () {
+      navigator.geolocation.geocode({address: `Tokyo`}, (results) => {
+        this.center = {
+          lat: results.coords.latitude,
+          lng: results.coords.longitude,
+        };
+      });
+      // navigator.geolocation.geocode({address: `Tokyo`}(res) => {
+      //   this.center = {
+      //     lat: res.coords.latitude,
+      //     lng: res.coords.longitude,
+      //   };
+      // };
+    },
   },
   //   axios call to get landmark JSON array
   created() {
     eventBus.$on("launchKeywordSearch", (payload) => {
       this.doKeywordSearch(payload);
     });
-    this.locateGeoLocation();
+    //this.locateGeoLocation();
     landmarkService.search().then((response) => {
-      this.landmarks = response.data; 
+      this.landmarks = response.data;
     });
-
+    this.setStartingLocation();
     // hardcoded coordinates for pre-existing markers
 
     const chureitoPagoda = {
@@ -226,23 +231,37 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
 .map {
-  z-index: -1;
-  
-}
-
-.gmap-map {
-  z-index: -1;
-  
-}
-
-.mapBox {
+  /* z-index: -1; */
+  flex-grow: 3;
   border-style: double;
   border-width: 12px;
   border-color: pink;
-  padding: 20;
+  padding: 50;
+}
+
+.gmap-map {
+  /* z-index: -1; */
+}
+
+.mapBox {
+  
+  
+}
+
+#flex {
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+#right-panel {
+  flex-grow: 1;
+}
+
+#left-panel {
+  flex-grow: 1;
 }
 </style>
