@@ -19,7 +19,7 @@
     </div>
     <br />
     <div id= "mapBox">
-    <gmap-map :zoom="6" :center="center" style="width: 100%; height: 700px">
+    <gmap-map :zoom="10" :center="center" style="width: 100%; height: 700px">
       <!-- Display circle with gmap circle -->
       <gmap-circle
         :center="this.startLocation"
@@ -111,9 +111,9 @@ export default {
   },
 
   // Sets center location when loaded
-  mounted() {
-    this.locateGeoLocation();
-  },
+  // mounted() {
+  //   this.locateGeoLocation();
+  // },
 
   methods: {
 
@@ -175,14 +175,14 @@ export default {
     },
 
     // if location is on it will default center to current location
-    locateGeoLocation: function () {
-      navigator.geolocation.getCurrentPosition((res) => {
-        this.center = {
-          lat: res.coords.latitude,
-          lng: res.coords.longitude,
-        };
-      });
-    },
+    // locateGeoLocation: function () {
+    //   navigator.geolocation.getCurrentPosition((res) => {
+    //     this.center = {
+    //       lat: res.coords.latitude,
+    //       lng: res.coords.longitude,
+    //     };
+    //   });
+    // },
   },
   //   axios call to get landmark JSON array
   created() {
