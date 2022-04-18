@@ -76,11 +76,11 @@ INSERT INTO landmarks (landmarkId, name, address, description, rating , isActive
 INSERT INTO landmarks (landmarkId, name, address, description, rating , isActive) VALUES (10, 'Nakamise-dori Street', '1 Chome-36-3 Asakusa, Taito City, Tokyo 111-0032, Japan', 'Get a feel for old-school Tokyo at one of Japan''s oldest shopping streets, Nakamise-dori, which dates back to the 17th century. Most shops in this arcade have been run by the same families for several generations, serving souvenirs, top-class street food and irresistible snacks.', 32, true);
 
 
---INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (1,1,'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tokyo_National_Museum%2C_Honkan_2010.jpg/1200px-Tokyo_National_Museum%2C_Honkan_2010.jpg');
---INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (2,2,'https://image.arrivalguides.com/1230x800/00/8696e6a1843072d16aee646ca33d62ae.jpg');
---INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (3,3,'https://mokolate.com/wp-content/uploads/2016/12/IMG_4687.jpg');
---INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (4,4,'https://th.bing.com/th/id/R.4758d7ef05fb25a24218a3a6a0217c39?rik=DBfhDvaPwBfSJQ&pid=ImgRaw&r=0');
---INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (5,5,'https://cdn7.japanrailpass.com.au/wp-content/uploads/2017/08/Chureito-pagoda-in-foreground-and-mount-fuji-in-background-during-sunrise-time.-Beautiful-nature-and-human-culture.jpg');
+INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (1,1,'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tokyo_National_Museum%2C_Honkan_2010.jpg/1200px-Tokyo_National_Museum%2C_Honkan_2010.jpg');
+INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (2,2,'https://image.arrivalguides.com/1230x800/00/8696e6a1843072d16aee646ca33d62ae.jpg');
+INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (3,3,'https://mokolate.com/wp-content/uploads/2016/12/IMG_4687.jpg');
+INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (4,4,'https://th.bing.com/th/id/R.4758d7ef05fb25a24218a3a6a0217c39?rik=DBfhDvaPwBfSJQ&pid=ImgRaw&r=0');
+INSERT INTO photos (photoId, landmarkId, photoUrl) VALUES (5,5,'https://cdn7.japanrailpass.com.au/wp-content/uploads/2017/08/Chureito-pagoda-in-foreground-and-mount-fuji-in-background-during-sunrise-time.-Beautiful-nature-and-human-culture.jpg');
 
 
 -- Add Admin User
