@@ -3,7 +3,7 @@
     <h1>Your Itineraries</h1>
     <form v-on:submit.prevent="submitForm" class="ItineraryForm">
       <div class="form-group">
-        <label for="itineraryName">Itinerary Name:</label>
+        <label for="itineraryName">Itinerary Name: </label>
         <input
           id="itineraryId"
           type="text"
@@ -13,7 +13,7 @@
       </div>
 
       <div class="form-group">
-        <label for="startLocation">Starting Location:</label>
+        <label for="startLocation">Starting Location: </label>
         <input
           id="startLocation"
           type="text"
