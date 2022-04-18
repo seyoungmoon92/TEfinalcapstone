@@ -25,7 +25,7 @@
         <tr>
         <div v-if="addLandmark==true" class="field">
           <label for="landmarkId">Enter Landmark ID </label>
-          <input name="landmarkId" type="text" v-model="landmarkList" />
+          <input name="landmarkId" type="text" v-model="landmarkList[itineraryId]" />
         </div>
         <div class="actions">
           <button 
@@ -82,14 +82,27 @@ export default {
     },
 
     updateItinerary(id) {
-      const itinerary = {
-        landmarkList: this.landmarkList,
-      };
+
       // this.itineraries.find(itinerary => itinerary.itineraryId === this.itinerary.itineraryId);
       this.addLandmark = true;
-      itinerary.landmarkList = (this.landmarkList + this.itineraries[id].landmarkList).split(',').filter(function(item, pos,self) {
-              return self.indexOf(item) == pos;
-           });
+      var input = this.itineraries[id] + ',' + this.landmarkList;
+      var splitted = input.split(',');
+      var collector = {};
+      for (let i = 0; i < splitted.length; i++) {
+        key = splitted[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        collector[key] = true;
+      }
+      var out = [];
+      for (var key in collector) {
+        out.push(key);
+      }
+      var output = out.join(',');
+
+      const itinerary = {
+        landmarkList: output,
+      };
+
+
       itineraryService
         .updateItinerary(id, itinerary)
         .then((response) => {
