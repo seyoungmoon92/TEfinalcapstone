@@ -1,6 +1,6 @@
 !<template>
   <div func: this.updateLandmarks> 
-    <button @click="updateLandmarks">Update Landmarks</button> 
+    <!-- <button @click="updateLandmarks">Update Landmarks</button>  -->
     <!-- <div>
       <h2>Find Landmarks</h2>
       <label >Input your desired search radius: 
@@ -18,7 +18,9 @@
       </label>
       <br />
     </div> -->
+    
     <div class="center">
+      
       <div v-for='(landmark) in landmarks' v-bind:key="landmark.id" class="property-card">
         <a v-bind:href="'/landmarks/' + landmark.landmarkId">
           <div class="property-image" v-bind:style="'background-image:url(' + landmark.photoUrl + ')'">
@@ -37,12 +39,6 @@
         </a>
       </div>
     </div>
-    <a
-      target="_blank"
-      href="www.javascriptfreecode.com"
-      style="font-size: 8pt; text-decoration: none"
-      >JavaScript Best Codes</a
-    >
   </div>
 </template>
 
@@ -165,9 +161,14 @@ body {
 }
 
 h5 {
+  color: pink;
   margin: 0px;
   font-size: 1.3em;
   font-weight: 1200;
+  background-color:#7c7c7c;
+  border-radius: 6px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 p {
@@ -178,9 +179,11 @@ p {
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
+  margin-left: 200px;
+  padding-right: 200px;
 }
 
 /* End Non-Essential */
@@ -196,14 +199,16 @@ p {
   -ms-flex-direction: column;
   flex-direction: column;
   position: relative;
+  margin-bottom: 50px;
+  margin-right: 80px;
 
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
-  -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-  box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  -webkit-box-shadow: 15px 15px 27px #363636, -15px -15px 27px #ffffff;
+  box-shadow: 15px 15px 27px #363636, -15px -15px 27px #ffffff;
 }
 /* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
 

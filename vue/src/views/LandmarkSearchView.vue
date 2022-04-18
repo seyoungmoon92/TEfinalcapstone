@@ -3,7 +3,9 @@
   <!-- <landmark-search/> -->
   <div>
       <button class="toggle" @click="hideMap(); updateLandmarks();" >Toggle View (Map/ Card)</button> 
+      
       <AddGoogleMap id = "map" v-if=this.showMap />
+      
       <landmark-card ref="landmarkCard" v-if=!this.showMap />
    </div>
 </div>
@@ -64,6 +66,7 @@ export default {
 .toggle{
   float: right;
   font-size: 1.4rem;
+  margin-bottom: 20px;
 }
 
 
