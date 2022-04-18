@@ -73,10 +73,11 @@ img {
   justify-content: center;
   position: absolute;
   top: 32%;
-  left: 38%;
-  /* transform: translate(-50%, -50%); */
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%, -50%);
   z-index: 2;
-  font-size: 2.2rem;
+  font-size: 2.0rem;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
