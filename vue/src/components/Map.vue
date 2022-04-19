@@ -259,6 +259,47 @@ export default {
       lng: 139.796371,
     };
 
+    const disney = {
+      lat: 35.632778,
+      lng: 139.880554,
+    };
+    const harajuku = {
+      lat: 35.670162,
+      lng: 139.702682,
+    };
+    const shinjuku = {
+      lat: 35.687130,
+      lng: 139.710617,
+    };
+    const dome = {
+      lat: 35.705620,
+      lng: 139.751900,
+    };
+    const edo = {
+      lat: 35.696217,
+      lng: 139.795944,
+    };
+    const mitake = {
+      lat: 35.758290,
+      lng: 139.132900,
+    };
+    const ryogoku = {
+      lat: 35.692440,
+      lng: 139.794400,
+    };
+    const sea = {
+      lat: 35.640114,
+      lng: 139.862167,
+    };
+    const nakano = {
+      lat: 35.709171,
+      lng: 139.666092,
+    };
+    const sengakuji = {
+      lat: 35.637756,
+      lng: 139.736298,
+    };
+
     this.locationMarkers.push({ position: tokyoNatMuseum });
     this.locationMarkers.push({ position: ghibli });
     this.locationMarkers.push({ position: sensoji });
@@ -269,6 +310,17 @@ export default {
     this.locationMarkers.push({ position: tsukiji });
     this.locationMarkers.push({ position: hachiko });
     this.locationMarkers.push({ position: nakamise });
+
+    this.locationMarkers.push({ position: disney });
+    this.locationMarkers.push({ position: harajuku });
+    this.locationMarkers.push({ position: shinjuku });
+    this.locationMarkers.push({ position: dome });
+    this.locationMarkers.push({ position: edo });
+    this.locationMarkers.push({ position: mitake });
+    this.locationMarkers.push({ position: ryogoku });
+    this.locationMarkers.push({ position: sea });
+    this.locationMarkers.push({ position: nakano });
+    this.locationMarkers.push({ position: sengakuji });
   },
 };
 </script>
