@@ -61,6 +61,13 @@
           <p id = "rightHeader">{{ landmarks[currentLandmark].name }}</p>
           <p>{{ landmarks[currentLandmark].description }}</p>
           <img :src="photos[currentLandmark].photoUrl" style="width:90%;" alt="">
+          
+          
+          <button v-on:click="updateItinerary(currentLandmark, selectedValue.split(':')[0] - 1)" > Add to itinerary </button>
+
+          <select id="categories" v-model="selectedValue">
+            <option v-for="(itinerary, index) in itineraries" v-bind:key="itinerary.id">{{index + 1}}: {{itinerary.itineraryName}}</option>
+          </select>
         </div>
       </div>
     </div>
@@ -70,6 +77,7 @@
 <script>
 import photoService from "../services/PhotoService.js";
 import landmarkService from "../services/LandmarkService.js";
+import itineraryService from "../services/ItineraryService.js";
 //import { gmapApi } from "vue2-google-maps"; // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
 import { eventBus } from "@/event-bus.js";
 
@@ -77,7 +85,8 @@ export default {
   name: "AddGoogleMap",
   data() {
     return {
-      radius: 5000,
+      radius: 0,
+      itineraries: {},
       options: {
         strokeColor: "#FF0000",
         strokeOpacity: 0.8,
@@ -92,7 +101,7 @@ export default {
         lng: 139.808,
       },
       photos: [],
-      test: [],
+      test: 0,
 
       locationMarkers: [],
       // filteredMarkers: [],
@@ -101,7 +110,8 @@ export default {
       //   empty landmarks array to be populated by axios call
       landmarks: [],
       currentLandmark: -1,
-      zoom: 9.7
+      zoom: 9.7,
+      selectedValue: 0,
     };
   },
   //   filtered landmark array by ID, will need to change filter parameter
@@ -139,6 +149,37 @@ export default {
         this.zoom = 14;
     },
 
+    hasLandmark(id, i) {
+      if (this.itineraries[i].landmarkList == null) {
+        return false;
+      }
+      var landmarks = this.itineraries[i].landmarkList;
+      console.log(landmarks);
+      return landmarks.includes("," + id + ",");
+    },
+    updateItinerary(id, i) {
+      this.addLandmark = true;
+      var input = this.itineraries[i].landmarkList + "," + id;
+      var splitted = input.split(",");
+      var collector = {};
+      for (let i = 0; i < splitted.length; i++) {
+        key = splitted[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        collector[key] = true;
+      }
+      var out = [];
+      for (var key in collector) {
+        out.push(key);
+      }
+      var output = out.join(",");
+      const itinerary = {
+        landmarkList: "," + output,
+      };
+      this.test = itinerary;
+      console.log(this.itineraries[i].itineraryId);
+      console.log(itinerary);
+      itineraryService.updateItinerary(this.itineraries[i].itineraryId, itinerary);
+      this.$router.go();
+    },
     // if it exists it will add marker to map when you click add
     addLocationMarker() {
       if (this.existingPlace) {
@@ -216,6 +257,9 @@ export default {
     landmarkService.search().then((response) => {
       this.landmarks = response.data;
     });
+    itineraryService.getAllItineraries().then((response) => {
+      this.itineraries = response.data;
+    });
     this.setStartingLocation();
     // hardcoded coordinates for pre-existing markers
     const tokyoNatMuseum = {
@@ -259,6 +303,47 @@ export default {
       lng: 139.796371,
     };
 
+    const disney = {
+      lat: 35.632778,
+      lng: 139.880554,
+    };
+    const harajuku = {
+      lat: 35.670162,
+      lng: 139.702682,
+    };
+    const shinjuku = {
+      lat: 35.687130,
+      lng: 139.710617,
+    };
+    const dome = {
+      lat: 35.705620,
+      lng: 139.751900,
+    };
+    const edo = {
+      lat: 35.696217,
+      lng: 139.795944,
+    };
+    const mitake = {
+      lat: 35.758290,
+      lng: 139.132900,
+    };
+    const ryogoku = {
+      lat: 35.692440,
+      lng: 139.794400,
+    };
+    const sea = {
+      lat: 35.640114,
+      lng: 139.862167,
+    };
+    const nakano = {
+      lat: 35.709171,
+      lng: 139.666092,
+    };
+    const sengakuji = {
+      lat: 35.637756,
+      lng: 139.736298,
+    };
+
     this.locationMarkers.push({ position: tokyoNatMuseum });
     this.locationMarkers.push({ position: ghibli });
     this.locationMarkers.push({ position: sensoji });
@@ -269,6 +354,17 @@ export default {
     this.locationMarkers.push({ position: tsukiji });
     this.locationMarkers.push({ position: hachiko });
     this.locationMarkers.push({ position: nakamise });
+
+    this.locationMarkers.push({ position: disney });
+    this.locationMarkers.push({ position: harajuku });
+    this.locationMarkers.push({ position: shinjuku });
+    this.locationMarkers.push({ position: dome });
+    this.locationMarkers.push({ position: edo });
+    this.locationMarkers.push({ position: mitake });
+    this.locationMarkers.push({ position: ryogoku });
+    this.locationMarkers.push({ position: sea });
+    this.locationMarkers.push({ position: nakano });
+    this.locationMarkers.push({ position: sengakuji });
   },
 };
 </script>
