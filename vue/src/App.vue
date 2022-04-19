@@ -303,6 +303,7 @@ img {
 #background {
   z-index: -1;
   margin-top: -10px;
+  background-color: #ffffff;
 }
 </style>
 
