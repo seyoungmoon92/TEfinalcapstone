@@ -106,7 +106,7 @@ export default {
     },
     updateItinerary(id, i) {
       this.addLandmark = true;
-      var input = this.itineraries[i].landmarkList + ", " + this.landmarkList;
+      var input = this.itineraries[i].landmarkList + "," + this.landmarkList;
       var splitted = input.split(",");
       var collector = {};
       for (let i = 0; i < splitted.length; i++) {
