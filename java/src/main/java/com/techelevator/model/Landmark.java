@@ -9,6 +9,9 @@ public class Landmark {
     private String name = "";
     private String location = "";
     private String description = "";
+    private String funFact1 = "";
+    private String funFact2 = "";
+    private String funFact3 = "";
     private int rating = 0;
     private boolean isActive = false;
 
@@ -75,5 +78,29 @@ public class Landmark {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFunFact1() {
+        return funFact1;
+    }
+
+    public void setFunFact1(String funFact1) {
+        this.funFact1 = funFact1;
+    }
+
+    public String getFunFact2() {
+        return funFact2;
+    }
+
+    public void setFunFact2(String funFact2) {
+        this.funFact2 = funFact2;
+    }
+
+    public String getFunFact3() {
+        return funFact3;
+    }
+
+    public void setFunFact3(String funFact3) {
+        this.funFact3 = funFact3;
     }
 }

@@ -3,6 +3,9 @@
       <h1> {{landmark.name}} </h1>
       <p> Address: {{landmark.location}} </p>
       <p> Description: {{landmark.description}} </p>
+      <p> Fun Fact: {{landmark.funFact1}} </p>
+      <p> Fun Fact: {{landmark.funFact2}} </p>
+      <p> Fun Fact: {{landmark.funFact3}} </p>
       
           <div class="property-image" v-bind:style="'background-image:url(' + photo[0].photoUrl + ')'"></div>
       <!-- <p> Rating: {{landmark.rating}} </p> -->
