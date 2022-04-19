@@ -32,12 +32,7 @@
           <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
         </div>
         <!-- <edit-itinerary /> -->
-<<<<<<< HEAD
         <div>
-=======
-        <tr>
-
->>>>>>> dee373d36600b39635623840a2d3766a63059d54
           <div class="field">
             <label for="landmarkId">Enter Landmark ID </label>
             <input
@@ -54,14 +49,8 @@
               Add Landmark
             </button>
           </div>
-<<<<<<< HEAD
         </div>
       </div>
-=======
-
-        </tr>
-      </tbody>
->>>>>>> dee373d36600b39635623840a2d3766a63059d54
       <!-- <p>-------------------------------</p> -->
     </div>
   </div>
