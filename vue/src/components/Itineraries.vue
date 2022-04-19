@@ -6,31 +6,32 @@
       v-bind:key="itinerary.itineraryId"
     >
       <!-- <p>-------------------------------</p> -->
-      <tbody>
-        <tr class="itineraryName">
-          {{
-            itinerary.itineraryName
-          }}<button
+      <div>
+        <button
             class="delete"
             v-on:click.prevent="deleteItinerary(itinerary.itineraryId)"
           >
-            Delete
+            Delete Itinerary
           </button>
-        </tr>
-        <tr>
+        <div class="itineraryName">
+          {{
+            itinerary.itineraryName
+          }}
+        </div>
+        <div>
           Start:
           {{
             itinerary.itineraryStart
           }}
-        </tr>
-        <tr>
+        </div>
+        <div>
           Landmark List:
-        </tr>
-        <tr v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
+        </div>
+        <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
           <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
-        </tr>
+        </div>
         <!-- <edit-itinerary /> -->
-        <tr>
+        <div>
           <div class="field">
             <label for="landmarkId">Enter Landmark ID </label>
             <input
@@ -47,8 +48,8 @@
               Add Landmark
             </button>
           </div>
-        </tr>
-      </tbody>
+        </div>
+      </div>
       <!-- <p>-------------------------------</p> -->
     </div>
   </div>
@@ -137,6 +138,11 @@ export default {
 };
 </script>
 <style scoped>
+.delete {
+  display: flex;
+  justify-content: end;
+  
+}
 .itinerarylist {
   margin-left: 40px;
 }
@@ -153,6 +159,7 @@ tr:nth-child(even) {
   display: inline-flex;
   width: 100%;
   justify-content: space-around;
-  text-decoration: bold;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 </style>

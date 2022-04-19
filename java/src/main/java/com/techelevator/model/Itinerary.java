@@ -1,13 +1,11 @@
 package com.techelevator.model;
 
-import java.lang.reflect.Array;
-
 public class Itinerary {
 
     private int itineraryId;
     private String itineraryName = "";
     private String itineraryStart = "";
-    private int[] landmarkList;
+    private String landmarkList = "";
     private int userId;
 
 
@@ -40,7 +38,7 @@ public class Itinerary {
         this.itineraryStart = itineraryStart;
     }
 
-    public int[] getLandmarkList() {
+    public String getLandmarkList() {
         return landmarkList;
     }
 
