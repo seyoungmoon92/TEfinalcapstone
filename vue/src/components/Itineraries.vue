@@ -11,6 +11,7 @@
       >
         Delete Itinerary
       </button>
+    
       <input type="radio" :id="itinerary.itineraryId" :value="itinerary.itineraryName" v-model="selected" name="selected" />
       <label :for="itinerary.itineraryId"
         ><div>{{ itinerary.itineraryName }}</div>
