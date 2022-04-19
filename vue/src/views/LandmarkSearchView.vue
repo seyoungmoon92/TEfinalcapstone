@@ -70,6 +70,9 @@ export default {
   margin-bottom: 20px;
 }
 
+/* #map{
+  max-height: ;
+} */
 
 
 

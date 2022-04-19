@@ -175,8 +175,6 @@ export default {
         landmarkList: "," + output,
       };
       this.test = itinerary;
-      console.log(this.itineraries[i].itineraryId);
-      console.log(itinerary);
       itineraryService.updateItinerary(this.itineraries[i].itineraryId, itinerary);
       this.$router.go();
     },
