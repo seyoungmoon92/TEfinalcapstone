@@ -28,6 +28,7 @@ export default {
     LandmarkCard,
    },
    methods: {
+     
      hideMap() {
        if(this.showMap == true){
          this.showMap = false;
@@ -68,6 +69,8 @@ export default {
   font-size: 1.4rem;
   margin-bottom: 20px;
 }
+
+
 
 
 

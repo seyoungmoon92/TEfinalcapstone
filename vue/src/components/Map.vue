@@ -23,25 +23,23 @@
     </div>
     <br />
     <div id="flex">
-      <div id="left-panel"><p></p>
-      <div v-for="landmark in landmarks" v-bind:key="landmark.id" id= "list-view">
-        
-        <button id="column-name">{{landmark.name}}</button>
-
-        
-
-      
-      
-      
-      
-      
-      </div>
+      <div id="left-panel">
+        <p></p>
+        <div
+          v-for="(landmark, index) in landmarks"
+          v-bind:key="landmark.id"
+          id="list-view"
+        >
+          <button id="column-name" v-on:click="currentLandmark = index, setCenter(index)">
+            {{ landmark.name }}
+          </button>
+        </div>
       </div>
 
       <div class="map">
         <div id="mapBox">
           <gmap-map
-            :zoom="9.7"
+            :zoom="zoom"
             :center="center"
             style="width: 100%; height: 700px"
           >
@@ -50,21 +48,28 @@
               :key="index"
               v-for="(m, index) in filteredMarkers"
               :position="m.position"
-              @click="center = m.position"
+              @click="(center = m.position), (currentLandmark = index)"
             ></gmap-marker>
           </gmap-map>
         </div>
-        
-        
       </div>
-      <div id="right-panel"><p>Test</p></div>
+      <div id="right-panel">
+        <div v-if="currentLandmark == -1">
+          <p>Please select a landmark</p>
+        </div>
+        <div v-if="currentLandmark != -1">
+          <p id = "rightHeader">{{ landmarks[currentLandmark].name }}</p>
+          <p>{{ landmarks[currentLandmark].description }}</p>
+          <img :src="photos[currentLandmark].photoUrl" style="width:90%;" alt="">
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import photoService from "../services/PhotoService.js";
 import landmarkService from "../services/LandmarkService.js";
-
 //import { gmapApi } from "vue2-google-maps"; // IMPORT TO MANIPULATE GOOGLE MAPS OBJECT NOT SURE IF DOING SHIT
 import { eventBus } from "@/event-bus.js";
 
@@ -86,6 +91,8 @@ export default {
         lat: 35.68321,
         lng: 139.808,
       },
+      photos: [],
+      test: [],
 
       locationMarkers: [],
       // filteredMarkers: [],
@@ -93,6 +100,8 @@ export default {
       existingPlace: null,
       //   empty landmarks array to be populated by axios call
       landmarks: [],
+      currentLandmark: -1,
+      zoom: 9.7
     };
   },
   //   filtered landmark array by ID, will need to change filter parameter
@@ -105,6 +114,9 @@ export default {
       });
     },
     filteredMarkers() {
+      if (this.startLocationName == "Not selected") {
+        return this.locationMarkers;
+      }
       return this.locationMarkers.filter((marker) => {
         return this.compareDistance(this.startLocation, marker) <= this.radius
           ? true
@@ -113,15 +125,18 @@ export default {
     },
   },
 
-  // Sets center location when loaded
-   mounted() {
-     this.locateGeoLocation();
-  },
-
   methods: {
     //   Works with google maps autocomplete function to find location
     initMarker(loc) {
       this.existingPlace = loc;
+    },
+    addMarker(marker) {
+      this.test.push(marker);
+      console.log("addMarker");
+    },
+    setCenter(marker){
+        this.center = this.locationMarkers[marker].position;
+        this.zoom = 14;
     },
 
     // if it exists it will add marker to map when you click add
@@ -174,25 +189,28 @@ export default {
     },
 
     // if location is on it will default center to current location
-    locateGeoLocation: function () {
-      navigator.geolocation.geocode({address: `Tokyo`}, (results) => {
-        this.center = {
-          lat: results.coords.latitude,
-          lng: results.coords.longitude,
-        };
-      });
-      // navigator.geolocation.geocode({address: `Tokyo`}(res) => {
-      //   this.center = {
-      //     lat: res.coords.latitude,
-      //     lng: res.coords.longitude,
-      //   };
-      // };
-    },
+    // locateGeoLocation: function() {
+    //   navigator.geolocation.geocode({ address: `Tokyo` }, (results) => {
+    //     this.center = {
+    //       lat: results.coords.latitude,
+    //       lng: results.coords.longitude,
+    //     };
+    // });
+    // navigator.geolocation.geocode({address: `Tokyo`}(res) => {
+    //   this.center = {
+    //     lat: res.coords.latitude,
+    //     lng: res.coords.longitude,
+    //   };
+    // };
+    // },
   },
   //   axios call to get landmark JSON array
   created() {
     eventBus.$on("launchKeywordSearch", (payload) => {
       this.doKeywordSearch(payload);
+    });
+    photoService.search().then((response) => {
+      this.photos = response.data;
     });
     //this.locateGeoLocation();
     landmarkService.search().then((response) => {
@@ -200,33 +218,57 @@ export default {
     });
     this.setStartingLocation();
     // hardcoded coordinates for pre-existing markers
-
-    const chureitoPagoda = {
-      lat: 35.5012626,
-      lng: 138.8013852,
+    const tokyoNatMuseum = {
+      lat: 35.7188351,
+      lng: 139.7765215,
     };
     const ghibli = {
       lat: 35.696238,
       lng: 139.5704317,
     };
-    const fushimiInariShrine = {
-      lat: 34.9671402,
-      lng: 135.7726717,
+    const sensoji = {
+      lat: 35.71472,
+      lng: 139.79675,
     };
-    const tokyoNatMuseum = {
-      lat: 35.7188351,
-      lng: 139.7765215,
+    const ueno = {
+      lat: 35.676506,
+      lng: 139.80005,
     };
-    const univStudioJapan = {
-      lat: 34.6691514,
-      lng: 135.4327486,
+    const meiji = {
+      lat: 35.67611,
+      lng: 139.69917,
+    };
+    const skytree = {
+      lat: 35.710083,
+      lng: 139.8107,
+    };
+    const kabukiza = {
+      lat: 35.669273,
+      lng: 139.767563,
+    };
+    const tsukiji = {
+      lat: 35.665371,
+      lng: 139.770279,
+    };
+    const hachiko = {
+      lat: 35.657982,
+      lng: 139.698929,
+    };
+    const nakamise = {
+      lat: 35.711094,
+      lng: 139.796371,
     };
 
-    this.locationMarkers.push({ position: chureitoPagoda });
-    this.locationMarkers.push({ position: ghibli });
-    this.locationMarkers.push({ position: fushimiInariShrine });
     this.locationMarkers.push({ position: tokyoNatMuseum });
-    this.locationMarkers.push({ position: univStudioJapan });
+    this.locationMarkers.push({ position: ghibli });
+    this.locationMarkers.push({ position: sensoji });
+    this.locationMarkers.push({ position: ueno });
+    this.locationMarkers.push({ position: meiji });
+    this.locationMarkers.push({ position: skytree });
+    this.locationMarkers.push({ position: kabukiza });
+    this.locationMarkers.push({ position: tsukiji });
+    this.locationMarkers.push({ position: hachiko });
+    this.locationMarkers.push({ position: nakamise });
   },
 };
 </script>
@@ -234,34 +276,49 @@ export default {
 <style scoped>
 .map {
   /* z-index: -1; */
-  flex-grow: 3;
+  flex-grow: 2;
+  
+  padding: 50;
+  max-width: 45%;
+  
+}
+
+/* .gmap-map {
+  z-index: -1;
+ }  */
+
+#mapBox {
   border-style: double;
   border-width: 12px;
   border-color: pink;
-  padding: 50;
-}
-
-.gmap-map {
-  /* z-index: -1; */
-}
-
-.mapBox {
-  
-  
+  border-radius: 10px;  
 }
 
 #flex {
   display: flex;
   flex-direction: row;
-
-
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
 
 #right-panel {
   flex-grow: 1;
+  max-width: 45%;
+  text-align: center;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 #left-panel {
   flex-grow: 1;
+  max-width: 10%;
+  margin-left: 50px;
+  margin-right: 50px;
 }
+
+#rightHeader {
+  font-size: 2em;
+}
+
+
 </style>
