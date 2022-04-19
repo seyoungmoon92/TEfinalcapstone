@@ -1,5 +1,9 @@
 <template>
   <div class="wrapper">
+    <p class="landmarkLink"><router-link v-bind:to="{ name: 'landmark-search' }"
+              >Go To Landmarks</router-link
+            ></p>
+            <br>
     <div
       class="wrap-1"
       v-for="(itinerary, index) in itineraries"
@@ -57,9 +61,7 @@
         </div> -->
       </div>
     </div>
-    <p class="landmarkLink"><router-link v-bind:to="{ name: 'landmark-search' }"
-              >Go To Landmarks</router-link
-            ></p>
+    
    
   </div>
   
@@ -335,6 +337,8 @@ input:checked ~ .questions {
 }
 .landmarkLink {
   color:blue;
+  text-align: center;
+  font-size: 1.3rem;
 }
 svg{
   margin-left: 8px;
