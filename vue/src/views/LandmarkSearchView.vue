@@ -28,6 +28,7 @@ export default {
     LandmarkCard,
    },
    methods: {
+     
      hideMap() {
        if(this.showMap == true){
          this.showMap = false;
@@ -51,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-#map {
+/* #map {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,13 +62,15 @@ export default {
   z-index: -1;
   width: 80%;
   margin: 0 auto;
-}
+} */
 
 .toggle{
   float: right;
   font-size: 1.4rem;
   margin-bottom: 20px;
 }
+
+
 
 
 

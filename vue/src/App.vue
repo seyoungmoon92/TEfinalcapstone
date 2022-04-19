@@ -73,6 +73,9 @@ export default {
   outline: none;
 }
 
+
+
+
 strong {
   font-weight: 600;
 }
