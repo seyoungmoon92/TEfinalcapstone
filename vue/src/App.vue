@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="home"> -->
   <div class="page">
-    <header tabindex="0">JG FOXTROT</header>
+    <header tabindex="0">GOGO TOKYO</header>
     <div id="nav-container">
       <div class="bg"></div>
       <div class="button" tabindex="0">
