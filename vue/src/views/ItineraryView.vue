@@ -19,11 +19,13 @@ export default {
 
 <style scoped>
 h1 {
+  margin-top:30px;
   text-align: center;
   font-size: 2.3rem;
 }
 .form {
   text-align: center;
+  margin-bottom: -45px;
 }
 
 
