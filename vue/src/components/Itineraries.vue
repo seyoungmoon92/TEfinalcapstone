@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <p class="landmarkLink"><router-link v-bind:to="{ name: 'landmark-search' }"
-              >Go To Landmarks</router-link
-            ></p>
+    <router-link style="text-decoration: none; color: inherit;" v-bind:to="{ name: 'landmark-search' }"
+              ><p class="landmarkLink">Go To Landmarks</p></router-link
+            >
             <br>
     <div
       class="wrap-1"
@@ -31,12 +31,12 @@
         <div class="cross"></div
       ></label>
       <div class=content>
-        <div>
+        <div id="startHeader">
           Starting Location:
-          {{ itinerary.itineraryStart }}
         </div>
+        <div id="startLocation">{{ itinerary.itineraryStart }}</div>
         
-        <div class="listHeader">Points of Interest:</div>
+        <p id="listHeader">Points of Interest:</p>
         <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
           <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
         </div>
@@ -161,6 +161,9 @@ export default {
 };
 </script>
 <style scoped>
+.wrap-1{
+  padding-bottom: 20px;
+}
 .delete {
   background: none;
   border: none;
@@ -185,7 +188,7 @@ tr:nth-child(even) {
   margin: 0;
   box-sizing: border-box;
   /* font-family: 'Space Mono', monospace; */
-  color: #3e474f;
+  color: #fccaff;
 }
 
 body {
@@ -213,7 +216,7 @@ label {
   width: 100%;
   height: 50px;
   cursor: pointer;
-  border: 3px solid #3e474f;
+  border: 3px solid #fccaff;
   user-select: none;
 }
 
@@ -232,7 +235,7 @@ label div:first-child {
 .cross:before,
 .cross:after {
   content: "";
-  border-top: 2px solid #3e474f;
+  border-top: 2px solid #fccaff;
   width: 15px;
   display: block;
   margin-top: 18px;
@@ -252,8 +255,9 @@ label div:first-child {
   overflow: hidden;
   transition: max-height, 0.5s;
 }
-.listHeader{
+#listHeader{
   font-weight: bold;
+  color:#f03768
 }
 
 input:checked ~ .content {
@@ -312,7 +316,7 @@ input:checked ~ .questions {
   content: "";
   border-style: solid;
   border-width: 0.8em 0.5em 0 0.5em;
-  border-color: #3e474f transparent transparent transparent;
+  border-color: #fccaff transparent transparent transparent;
   transform: translateY(-200%);
   bottom: 90%;
   left: 50%;
@@ -336,11 +340,29 @@ input:checked ~ .questions {
   transform: scaleY(1);
 }
 .landmarkLink {
-  color:blue;
+  color:rgb(104, 104, 255);
+  text-shadow: 0px 0px 15px rgb(57, 57, 255);
   text-align: center;
   font-size: 1.3rem;
 }
+.landmarkLink:hover{
+  color: rgb(253, 197, 234);
+  /* text-decoration-color: rgb(255, 240, 250); */
+  text-shadow: 0px 0px 15px rgb(255, 57, 255);
+  transition: .4s;
+  text-decoration: none;
+}
+router-link:hover{
+  text-decoration: none;
+}
 svg{
   margin-left: 8px;
+}
+#startHeader{
+  font-weight: bold;
+  color:#f03768
+}
+#startLocation{
+  color: white;
 }
 </style>
