@@ -34,12 +34,17 @@ created() {
 
 
 <style scoped>
+div {
+  margin-right: 360px;
+  margin-left: 360px;
+}
+
 .property-image {
-  display: flex;
-  align-items: flex-end;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   height: 30em;
   width: 45em;
-  margin-left: 400px;
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 8px;
@@ -53,6 +58,5 @@ h1 {
   color: #ff006a;
   font-family: "Roboto Mono", cursive;
   text-align: start;
-  
 }
 </style>
