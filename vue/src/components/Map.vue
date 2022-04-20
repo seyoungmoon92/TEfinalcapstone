@@ -427,6 +427,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
 #prompt {
   text-align: center;
+  font-size:1.3rem;
 }
 #autocomplete {
   overflow: hidden;
@@ -437,7 +438,7 @@ input {
   font-size: 1rem;
 }
 #inputRadius {
-  font-size: 1rem;
+  font-size: 1.3rem;
   text-align: center;
   
   display: flex;
@@ -483,7 +484,7 @@ input {
   justify-content: center;
   letter-spacing: 3px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.3rem;
   max-width: 5rem;
 }
 p {
@@ -499,7 +500,7 @@ h2 {
   margin-bottom: -10px;
 }
 #landmarkHeader {
-  font-size: 1rem;
+  font-size: 1.3rem;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -614,5 +615,6 @@ h2 {
 #filter{
   display: flex;
   margin-top: 10px;
+  justify-content: space-evenly;
 }
 </style>
