@@ -2,27 +2,34 @@
   <div>
     <h2>Find Landmarks</h2>
     <div id="landmarkHeader">
-     
-      <label  id="prompt"
+     Input your starting location: 
+       
+        <gmap-autocomplete id="autocomplete"
+          placeholder="Starting Location"
+          @place_changed="initMarker"
+        ></gmap-autocomplete>
+        </div>
+      <label id="inputRadius" 
         >Input your desired search radius:
         <input 
-          class="form-control search_radius mb-4"
+          class="form-control input-sm"
           v-model="radius"
           type="number"
           placeholder="search radius"
         />
-        Input your starting location: 
-        <!-- prompts user for location -->
+        <!-- Input your starting location: 
+      
         <gmap-autocomplete
           placeholder="Starting Location"
           @place_changed="initMarker"
-        ></gmap-autocomplete>
+        ></gmap-autocomplete> -->
+        </label>
         <button id="setButton" class="btn btn-secondary" @click="setStartingLocation">GO!</button>
         <p id="prompt">Current starting location is: </p><p id="startName">{{ startLocationName }}</p>
-      </label>
+      
       
       <br />
-    </div>
+    <!-- </div> -->
     
     <br />
     <div id="flex">
@@ -63,7 +70,9 @@
         <div v-if="currentLandmark != -1">
           <p id = "rightHeader">{{ landmarks[currentLandmark].name }}</p>
           <p id="description">{{ landmarks[currentLandmark].description }}</p>
-          <img :src="photos[currentLandmark].photoUrl" style="width:90%;" alt="">
+          <img :src="photos[currentLandmark].photoUrl" style="width:90%;" alt="" >
+          <a v-bind:href="'/landmarks/' + landmarks[currentLandmark].landmarkId">
+          Click to view details</a>
           
           <div id="itinlist">
           <button id="itinbtn" class= "btn btn-primary" v-on:click="updateItinerary(currentLandmark, selectedValue.split(':')[0] - 1)" > Add to Itinerary </button>
@@ -372,6 +381,34 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
+#prompt{
+  text-align: center;
+}
+#autocomplete{
+  overflow: hidden;
+  border-radius: 5px;
+}
+input{
+  max-width: 10rem;
+  font-size: 1rem;
+}
+#inputRadius{
+  font-size: 1.3rem;
+  text-align: center;
+display:flex;
+justify-content: center;
+margin-top:10px;
+/* align-items: center; */
+}
+a{
+  font-size: 1.3rem;
+  margin-top: 15px;
+  display: block;
+}
+img{
+  border-radius: 8px;
+}
 #pleaseSelectLandmark{
   font-size: 1.5rem;
   width: 100%;
@@ -385,7 +422,7 @@ input{
   font-size: 1.4rem;
 }
 #itinlist{
-  margin-top: 20px;
+  margin-top: 15px;
 }
 #itinbtn{
   font-size: 1.4rem;
@@ -396,10 +433,13 @@ input{
   margin-bottom: 15px;
 }
 #startName{
+  text-align: center;
   color:white;
   margin-bottom: -35px;
 }
 #setButton{
+  display: flex;
+  justify-content: center;
   letter-spacing: 3px;
   font-weight: bold;
   font-size: 1.3rem;
@@ -416,9 +456,10 @@ h2{
   color:#f03768;
   font-size: 3rem;
   text-shadow: 0px 0px 12px #ff006a;
+  font-family: "Roboto Mono";
 }
 #landmarkHeader{
-  
+  font-size:1.3rem;
   text-align: center;
 display:flex;
 justify-content: center;
@@ -458,6 +499,7 @@ justify-content: center;
 
   /* background: rgb(51, 54, 100); */
   border-radius: 25px;
+  
   padding: 40px;
       align-items: center;
 
@@ -469,9 +511,13 @@ justify-content: center;
  }  */
 
 #mapBox {
-  border-style: solid;
-  /* border-color: #db4dff; */
-  /* border-radius: 10px; */
+  margin-top:60px;
+  border: none;
+  /* position:relative; */
+    overflow:hidden;
+  /* border-style: solid;
+  border-color: #db4dff; */
+  border-radius: 10px;
   /* box-shadow: 0px 0px 30px #db4dff; */
   z-index: 1;  
   justify-content: center;
