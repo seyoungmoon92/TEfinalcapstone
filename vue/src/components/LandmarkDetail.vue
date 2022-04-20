@@ -44,6 +44,9 @@ created() {
 .page {
   margin-right: 15em;
   margin-left: 15em;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 .address-description {
   margin-right: 50em;
@@ -92,4 +95,19 @@ h1 {
   
 
 }
+
+body, html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+body {
+  background-color: rgb(51, 0, 85);
+}
+
+
+
+
+
 </style>
