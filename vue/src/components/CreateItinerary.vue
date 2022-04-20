@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <button
       id="show-form-button"
       href="#"
@@ -7,7 +7,7 @@
       v-on:click.prevent="showForm = true"
       >CREATE ITINERARY</button
     >
-    <form v-on:submit.prevent="submitForm" v-if="showForm === true">
+    <form class="form" v-on:submit.prevent="submitForm" v-if="showForm === true">
       <div class="form-group">
         <label for="itineraryName">Itinerary Name: </label>
         <input
@@ -28,8 +28,8 @@
         />
       </div>
 
-      <button class="btn btn-submit" type="submit">Submit</button>
-      <button class="btn btn-cancel" type="button" value="cancel" v-on:click="cancelForm">
+      <button class="btn btn-submit btn-info" type="submit">Submit</button>
+      <button class="btn btn-cancel btn-secondary" type="button" value="cancel" v-on:click="cancelForm">
         Cancel
       </button>
     </form>
@@ -82,6 +82,14 @@ export default {
 </script>
 
 <style scoped>
+
+.form{
+  position: relative;
+  top: 10%;
+  left: 36%;
+  max-width: 28%;
+  margin-bottom: -65px;
+}
 #show-form-button{
   justify-content: center;
   font-size: 1.3rem;
@@ -93,7 +101,8 @@ export default {
   padding-left: 15px;
   padding-right: 15px;
   cursor: pointer;
-  margin-top: -10px;
+  margin-top: 15px;
+  margin-bottom: -20px;
 }
 
 /* .form-group {

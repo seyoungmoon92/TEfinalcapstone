@@ -1,16 +1,30 @@
 <template>
   <div class="wrapper">
+    <p class="landmarkLink"><router-link v-bind:to="{ name: 'landmark-search' }"
+              >Go To Landmarks</router-link
+            ></p>
+            <br>
     <div
       class="wrap-1"
       v-for="(itinerary, index) in itineraries"
       v-bind:key="itinerary.itineraryId"
     >
-      <button
+      <!-- <button
         class="delete"
         v-on:click.prevent="deleteItinerary(itinerary.itineraryId)"
       >
         Delete Itinerary
-      </button>
+      </button> -->
+      <button class = "delete">
+    <svg v-on:click.prevent="deleteItinerary(itinerary.itineraryId)" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+  <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+</svg>
+</button>
       <input type="radio" :id="itinerary.itineraryId" :value="itinerary.itineraryName" v-model="selected" name="selected" />
       <label :for="itinerary.itineraryId"
         ><div>{{ itinerary.itineraryName }}</div>
@@ -21,7 +35,8 @@
           Starting Location:
           {{ itinerary.itineraryStart }}
         </div>
-        <div>Points of Interest:</div>
+        
+        <div class="listHeader">Points of Interest:</div>
         <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
           <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
         </div>
@@ -46,7 +61,10 @@
         </div> -->
       </div>
     </div>
+    
+   
   </div>
+  
 </template>
 <script>
 // import EditItinerary from "../components/EditItinerary.vue";
@@ -144,9 +162,10 @@ export default {
 </script>
 <style scoped>
 .delete {
-  display: flex;
-  justify-content: flex-end;
+  background: none;
+  border: none;
   
+  cursor: pointer;
 }
 .itinerarylist {
   margin-left: 40px;
@@ -160,13 +179,7 @@ tr:nth-child(even) {
 .itinerary {
   padding: 15px;
 }
-.itineraryName {
-  display: inline-flex;
-  width: 100%;
-  justify-content: space-around;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
+
 * {
   padding: 0;
   margin: 0;
@@ -180,16 +193,16 @@ body {
 }
 
 .wrapper {
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   margin: 10vh auto;
 }
 
-h1 {
+/* h1 {
   font-size: 2em;
   margin-bottom: 20px;
   text-align: center;
-}
+} */
 
 input {
   display: none;
@@ -208,7 +221,7 @@ label div:first-child {
   width: 100%;
   line-height: 45px;
   margin-left: 10px;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .cross {
@@ -233,11 +246,14 @@ label div:first-child {
 
 .content {
   box-sizing: border-box;
-  font-size: 0.9em;
+  font-size: 1.3em;
   margin: 10px 10px;
   max-height: 0;
   overflow: hidden;
   transition: max-height, 0.5s;
+}
+.listHeader{
+  font-weight: bold;
 }
 
 input:checked ~ .content {
@@ -318,5 +334,13 @@ input:checked ~ .questions {
   opacity: 1;
   z-index: 100;
   transform: scaleY(1);
+}
+.landmarkLink {
+  color:blue;
+  text-align: center;
+  font-size: 1.3rem;
+}
+svg{
+  margin-left: 8px;
 }
 </style>
