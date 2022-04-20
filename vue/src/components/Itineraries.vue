@@ -38,7 +38,7 @@
         
         <p id="listHeader">Points of Interest:</p>
         <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
-          <div id="landmarks" v-if="hasLandmark(index2, index)">{{ landmark }}</div>
+          <div id="landmarks" v-if="hasLandmark(index2, index)"   v-on:click="removeFromItinerary(index, index2)" >{{ landmark }} Delete Item</div>
         </div>
         <!-- <edit-itinerary /> -->
         <!-- <div>
@@ -157,7 +157,40 @@ export default {
       console.log(landmarks);
       return landmarks.includes("," + id + ",");
     },
+
+  removeFromItinerary(id, i) {
+      this.addLandmark = true;
+      console.log(i);
+      console.log(id);
+      var input = this.itineraries[id].landmarkList;
+      var splitted = input.split(",");
+      var collector = {};
+      for (let i = 0; i < splitted.length; i++) {
+        key = splitted[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        collector[key] = true;
+      }
+      console.log(collector);
+      var out = [];
+
+      for (var key in collector) {
+        out.push(key);
+      }
+      out = out.filter(num => {
+        return num != i;
+      });
+      
+      var output = out.join(",");
+      console.log(output);
+      const itinerary = {
+        landmarkList: "," + output,
+      };
+      itineraryService.updateItinerary(this.itineraries[id].itineraryId, itinerary).then((response) => {
+        console.log(response);
+        this.$router.go();
+      });
+    },
   },
+
 };
 </script>
 <style scoped>
