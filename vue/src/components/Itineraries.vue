@@ -1,4 +1,7 @@
 <template>
+<body>
+  
+
   <div class="wrapper">
     <router-link style="text-decoration: none; color: inherit;" v-bind:to="{ name: 'landmark-search' }"
               ><p class="landmarkLink">Go To Landmarks</p></router-link
@@ -38,7 +41,11 @@
         
         <p id="listHeader">Points of Interest:</p>
         <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
-          <div id="landmarks" v-if="hasLandmark(index2, index)"   v-on:click="removeFromItinerary(index, index2)" >{{ landmark }} Delete Item</div>
+          <div id="landmarks" v-if="hasLandmark(index2, index)" >{{ landmark }}<svg v-on:click="removeFromItinerary(index, index2)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg></div>
+          
         </div>
         <!-- <edit-itinerary /> -->
         <!-- <div>
@@ -64,7 +71,7 @@
     
    
   </div>
-  
+  </body>
 </template>
 <script>
 // import EditItinerary from "../components/EditItinerary.vue";
@@ -194,6 +201,9 @@ export default {
 };
 </script>
 <style scoped>
+svg{
+  cursor: pointer;
+}
 #landmarks{
   color:white;
 }
@@ -228,13 +238,15 @@ tr:nth-child(even) {
 }
 
 body {
-  overflow: hidden;
+   min-height: 200vh;
+  background-color: #07163a;
 }
 
 .wrapper {
   max-width: 800px;
   width: 100%;
   margin: 10vh auto;
+  
 }
 
 /* h1 {

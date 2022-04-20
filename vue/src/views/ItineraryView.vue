@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
 h1 {
   margin-top:30px;
   text-align: center;
@@ -25,6 +26,7 @@ h1 {
   /* font-weight: bold; */
   color:#f03768;
   text-shadow: 0px 0px 12px #ff006a;
+  font-family: "Roboto Mono";
 }
 .form {
   text-align: center;
