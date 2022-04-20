@@ -397,6 +397,7 @@ input{
 }
 #startName{
   color:white;
+  margin-bottom: -35px;
 }
 #setButton{
   letter-spacing: 3px;
@@ -427,6 +428,9 @@ justify-content: center;
   width: 100%;
 }
 .btn-dark{
+  border: solid 1px;
+ 
+  border-color: rgb(39, 39, 39);
   margin: 3px 0;
   width: 100%;
   border-radius: 10px;
@@ -439,6 +443,7 @@ justify-content: center;
   color: rgb(253, 197, 234);
   /* text-decoration-color: rgb(255, 240, 250); */
   text-shadow: 0px 0px 10px rgb(255, 156, 255); 
+  border: none;
 }
 #list-view{
   justify-content: center;
