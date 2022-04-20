@@ -309,7 +309,7 @@ img {
 #background {
   z-index: -1;
   margin-top: -10px;
-  background-color: #222d5a;
+  background-color: #07163a;
   min-height: 100%;
   /* height: 100%; */
   margin-bottom: 0;
