@@ -87,7 +87,7 @@ strong {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: #212121;
+  color: #fccaff;
 }
 
 header {
@@ -230,6 +230,7 @@ main small {
   display: block;
   text-transform: uppercase;
   transition: color 0.1s;
+  color: black;
 }
 
 #nav-content li a:hover {
@@ -303,7 +304,21 @@ img {
 #background {
   z-index: -1;
   margin-top: -10px;
-  background-color: #ffffff;
+  background-color: #222d5a;
+  min-height: 100%;
+  /* height: 100%; */
+  margin-bottom: 0;
+  padding-bottom: 0;
+  background-repeat: repeat;
+    padding-top: 70px;
+  margin: 0;
+  width: 100%;
+  min-height: 120vh;
 }
+
+/* *{
+  background-color: #eeedfd;
+  z-index: -9999;
+} */
 </style>
 

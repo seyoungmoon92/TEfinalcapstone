@@ -163,7 +163,7 @@ h1 {
   padding: 0.35em 1.2em;
   border: 0.1em solid #ffffff;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border-radius: 0.50em;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -173,29 +173,6 @@ h1 {
   transition: all 0.2s;
 }
 
-.button2 {
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.1em;
-  /* margin: 0 0.3em 0.3em 0; */
-  background: linear-gradient(to right, #403b4a, #bbbbb4);
-
-  border-radius: 1em;
-  opacity: 0.9;
-
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  color: white;
-  text-align: center;
-  transition: all 0.2s;
-  /* text-decoration: underline; */
-  /* width:%; */
-  margin-left: -3%;
-  margin-right: 1%;
-  margin-top: 2em;
-}
 .button1:hover {
   color: #000000;
   background-color: #ffffff;
@@ -214,75 +191,5 @@ h1 {
 
 /* IGNORE ALL THE STYLING BELOW */
 
-.btnfos {
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  /* display: block; */
-  /* font-size: 16px; */
-  /* font-weight: 400; */
-  line-height: 45px;
-  max-width: 39rem;
-  margin: 0 auto 2em;
-  /* position: relative; */
-  text-transform: uppercase;
-  vertical-align: middle;
-  width: 100%;
-}
-@media (min-width: 400px) {
-  .btnfos {
-    display: inline-block;
-    margin-right: 2.5em;
-  }
-  .btnfos:nth-of-type(even) {
-    margin-right: 0;
-  }
-}
-@media (min-width: 600px) {
-  .btnfos:nth-of-type(even) {
-    margin-right: 2.5em;
-  }
-  .btnfos:nth-of-type(5) {
-    margin-right: 0;
-  }
-}
 
-.btnfos-2 {
-  letter-spacing: 0;
-}
-
-.btnfos-2:hover,
-.btnfos-2:active {
-  letter-spacing: 5px;
-}
-
-.btnfos-2:after,
-.btnfos-2:before {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border: 1px solid rgba(255, 255, 255, 0);
-  bottom: 0px;
-  content: " ";
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  -webkit-transition: all 280ms ease-in-out;
-  transition: all 280ms ease-in-out;
-  width: 0;
-}
-
-.btnfos-2:hover:after,
-.btnfos-2:hover:before {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-color: #fff;
-  -webkit-transition: width 350ms ease-in-out;
-  transition: width 350ms ease-in-out;
-  width: 70%;
-}
-
-.btnfos-2:hover:before {
-  bottom: auto;
-  top: 0;
-  width: 70%;
-}
 </style>

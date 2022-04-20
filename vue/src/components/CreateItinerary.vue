@@ -91,15 +91,18 @@ export default {
   margin-bottom: -65px;
 }
 #show-form-button{
+  
   justify-content: center;
+  font-weight: 1000;
+  color: rgb(78, 78, 78);
   font-size: 1.3rem;
   border-width: 1px;
-  background-color: rgb(250, 206, 213);
-  border-radius: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  background-color: #fccaff;
+  border-radius: 12px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 18px;
+  padding-right: 18px;
   cursor: pointer;
   margin-top: 15px;
   margin-bottom: -20px;
