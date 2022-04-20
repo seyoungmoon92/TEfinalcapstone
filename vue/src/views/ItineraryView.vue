@@ -21,9 +21,7 @@ export default {
 h1 {
   margin-top:30px;
   text-align: center;
-  font-size: 2.9rem;
-  color: #ff006a;
-  font-family: "Roboto Mono", cursive;
+  font-size: 2.3rem;
 }
 .form {
   text-align: center;

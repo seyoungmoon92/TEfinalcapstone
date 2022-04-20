@@ -31,12 +31,12 @@
         <div class="cross"></div
       ></label>
       <div class=content>
-        <div>
+        <div id="startHeader">
           Starting Location:
-          {{ itinerary.itineraryStart }}
         </div>
+        <div id="startLocation">{{ itinerary.itineraryStart }}</div>
         
-        <div class="listHeader">Points of Interest:</div>
+        <p id="listHeader">Points of Interest:</p>
         <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
           <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
         </div>
@@ -161,6 +161,9 @@ export default {
 };
 </script>
 <style scoped>
+.wrap-1{
+  padding-bottom: 20px;
+}
 .delete {
   background: none;
   border: none;
@@ -252,8 +255,9 @@ label div:first-child {
   overflow: hidden;
   transition: max-height, 0.5s;
 }
-.listHeader{
+#listHeader{
   font-weight: bold;
+  color:#f03768
 }
 
 input:checked ~ .content {
@@ -353,5 +357,12 @@ router-link:hover{
 }
 svg{
   margin-left: 8px;
+}
+#startHeader{
+  font-weight: bold;
+  color:#f03768
+}
+#startLocation{
+  color: white;
 }
 </style>
