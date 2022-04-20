@@ -112,7 +112,6 @@ export default {
   display: flex;
   margin-top: 40px;
   width: 100%;
-
 }
 
 
