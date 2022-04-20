@@ -1,36 +1,10 @@
 <template>
   <div>
     <h2>Find Landmarks</h2>
-    <div id="landmarkHeader">
-     Input your starting location: 
-       
-        <gmap-autocomplete id="autocomplete"
-          placeholder="Starting Location"
-          @place_changed="initMarker"
-        ></gmap-autocomplete>
-        </div>
-      <label id="inputRadius" 
-        >Input your desired search radius:
-        <input 
-          class="form-control input-sm"
-          v-model="radius"
-          type="number"
-          placeholder="search radius"
-        />
-        <!-- Input your starting location: 
-      
-        <gmap-autocomplete
-          placeholder="Starting Location"
-          @place_changed="initMarker"
-        ></gmap-autocomplete> -->
-        </label>
-        <button id="setButton" class="btn btn-secondary" @click="setStartingLocation">GO!</button>
-        <p id="prompt">Current starting location is: </p><p id="startName">{{ startLocationName }}</p>
-      
-      
-      <br />
+
+    <br />
     <!-- </div> -->
-    
+
     <br />
     <div id="flex">
       <div id="left-panel">
@@ -40,13 +14,20 @@
           v-bind:key="landmark.id"
           id="list-view"
         >
-          <button type="button" class="btn btn-dark" id="column-name" v-on:click="currentLandmark = index, setCenter(index)">
+          <button
+            type="button"
+            class="btn btn-dark"
+            id="column-name"
+            v-on:click="(currentLandmark = index), setCenter(index)"
+          >
             {{ landmark.name }}
           </button>
         </div>
       </div>
 
       <div class="map">
+        <p id="prompt">Current starting location is: {{ startLocationName }}</p>
+
         <div id="mapBox">
           <gmap-map
             :zoom="zoom"
@@ -62,24 +43,83 @@
             ></gmap-marker>
           </gmap-map>
         </div>
+        <div id="filter">
+          <div id="landmarkHeader">
+            Input your starting location:
+
+            <gmap-autocomplete
+              id="autocomplete"
+              placeholder="Starting Location"
+              @place_changed="initMarker"
+            ></gmap-autocomplete>
+          </div>
+          <label id="inputRadius"
+            >Input your desired search radius:
+            <input
+              class="form-control input-sm"
+              v-model="radius"
+              type="number"
+              placeholder="search radius"
+            />
+            <!-- Input your starting location: 
+        
+          <gmap-autocomplete
+            placeholder="Starting Location"
+            @place_changed="initMarker"
+          ></gmap-autocomplete> -->
+          </label>
+          <button
+            id="setButton"
+            class="btn btn-secondary"
+            @click="setStartingLocation"
+          >
+            GO!
+          </button>
+        </div>
       </div>
       <div id="right-panel">
         <div v-if="currentLandmark == -1">
           <p id="pleaseSelectLandmark">Please select a landmark</p>
         </div>
         <div v-if="currentLandmark != -1">
-          <p id = "rightHeader">{{ landmarks[currentLandmark].name }}</p>
+          <p id="rightHeader">{{ landmarks[currentLandmark].name }}</p>
           <p id="description">{{ landmarks[currentLandmark].description }}</p>
-          <img :src="photos[currentLandmark].photoUrl" style="width:90%;" alt="" >
-          <a v-bind:href="'/landmarks/' + landmarks[currentLandmark].landmarkId">
-          Click to view details</a>
-          
-          <div id="itinlist">
-          <button id="itinbtn" class= "btn btn-primary" v-on:click="updateItinerary(currentLandmark, selectedValue.split(':')[0] - 1)" > Add to Itinerary </button>
+          <img
+            :src="photos[currentLandmark].photoUrl"
+            style="width:90%;"
+            alt=""
+          />
+          <a
+            v-bind:href="'/landmarks/' + landmarks[currentLandmark].landmarkId"
+          >
+            Click to view details</a
+          >
 
-          <select class="custom-select" id="categories" v-model="selectedValue">
-            <option v-for="(itinerary, index) in itineraries" v-bind:key="itinerary.id">{{index + 1}}: {{itinerary.itineraryName}}</option>
-          </select>
+          <div id="itinlist">
+            <button
+              id="itinbtn"
+              class="btn btn-primary"
+              v-on:click="
+                updateItinerary(
+                  currentLandmark,
+                  selectedValue.split(':')[0] - 1
+                )
+              "
+            >
+              Add to Itinerary
+            </button>
+
+            <select
+              class="custom-select"
+              id="categories"
+              v-model="selectedValue"
+            >
+              <option
+                v-for="(itinerary, index) in itineraries"
+                v-bind:key="itinerary.id"
+                >{{ index + 1 }}: {{ itinerary.itineraryName }}</option
+              >
+            </select>
           </div>
         </div>
       </div>
@@ -157,9 +197,9 @@ export default {
       this.test.push(marker);
       console.log("addMarker");
     },
-    setCenter(marker){
-        this.center = this.locationMarkers[marker].position;
-        this.zoom = 14;
+    setCenter(marker) {
+      this.center = this.locationMarkers[marker].position;
+      this.zoom = 16;
     },
 
     hasLandmark(id, i) {
@@ -188,7 +228,10 @@ export default {
         landmarkList: "," + output,
       };
       this.test = itinerary;
-      itineraryService.updateItinerary(this.itineraries[i].itineraryId, itinerary);
+      itineraryService.updateItinerary(
+        this.itineraries[i].itineraryId,
+        itinerary
+      );
       this.$router.go();
     },
     // if it exists it will add marker to map when you click add
@@ -323,24 +366,24 @@ export default {
       lng: 139.702682,
     };
     const shinjuku = {
-      lat: 35.687130,
+      lat: 35.68713,
       lng: 139.710617,
     };
     const dome = {
-      lat: 35.705620,
-      lng: 139.751900,
+      lat: 35.70562,
+      lng: 139.7519,
     };
     const edo = {
       lat: 35.696217,
       lng: 139.795944,
     };
     const mitake = {
-      lat: 35.758290,
-      lng: 139.132900,
+      lat: 35.75829,
+      lng: 139.1329,
     };
     const ryogoku = {
-      lat: 35.692440,
-      lng: 139.794400,
+      lat: 35.69244,
+      lng: 139.7944,
     };
     const sea = {
       lat: 35.640114,
@@ -382,128 +425,125 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
-#prompt{
+#prompt {
   text-align: center;
 }
-#autocomplete{
+#autocomplete {
   overflow: hidden;
   border-radius: 5px;
 }
-input{
+input {
   max-width: 10rem;
   font-size: 1rem;
 }
-#inputRadius{
-  font-size: 1.3rem;
+#inputRadius {
+  font-size: 1rem;
   text-align: center;
-display:flex;
-justify-content: center;
-margin-top:10px;
-/* align-items: center; */
+  
+  display: flex;
+  justify-content: center;
 }
-a{
+a {
   font-size: 1.3rem;
   margin-top: 15px;
   display: block;
 }
-img{
+img {
   border-radius: 8px;
 }
-#pleaseSelectLandmark{
+#pleaseSelectLandmark {
   font-size: 1.5rem;
   width: 100%;
 }
-input{
+input {
   text-align: center;
-  
 }
-.custom-select{
+.custom-select {
   max-width: 20rem;
   font-size: 1.4rem;
 }
-#itinlist{
+#itinlist {
   margin-top: 15px;
 }
-#itinbtn{
+#itinbtn {
   font-size: 1.4rem;
   max-width: 12rem;
 }
-#description{
+#description {
   font-size: 1.3rem;
   margin-bottom: 15px;
 }
-#startName{
+#startName {
   text-align: center;
-  color:white;
-  margin-bottom: -35px;
+  color: white;
+  /* margin-bottom: -35px; */
 }
-#setButton{
+#setButton {
   display: flex;
   justify-content: center;
   letter-spacing: 3px;
   font-weight: bold;
-  font-size: 1.3rem;
-  margin-top: 20px;
+  font-size: 1rem;
   max-width: 5rem;
 }
-p{
-  margin-top: 15px;
-  margin-bottom: 5px;
+p {
+  /* margin-top: 15px; */
+  /* margin-bottom: 5px; */
 }
-h2{
-  margin-top: 20px;
+h2 {
   text-align: center;
-  color:#f03768;
+  color: #f03768;
   font-size: 3rem;
   text-shadow: 0px 0px 12px #ff006a;
   font-family: "Roboto Mono";
+  margin-bottom: -10px;
 }
-#landmarkHeader{
-  font-size:1.3rem;
+#landmarkHeader {
+  font-size: 1rem;
   text-align: center;
-display:flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
+  height: 2rem;
 }
-.btn-secondary, .btn-primary{
-  margin: 3px 0;
+.btn-secondary,
+.btn-primary {
+
   width: 100%;
 }
-.btn-dark{
+.btn-dark {
   border: solid 1px;
- 
+
   border-color: rgb(39, 39, 39);
-  margin: 3px 0;
+  
   width: 100%;
   border-radius: 10px;
 }
-.btn:hover{
+.btn:hover {
   /* box-shadow: 0px 0px 10px rgb(255, 185, 255);  */
 }
-.btn-dark:focus{
+.btn-dark:focus {
   box-shadow: 0px 0px 8px rgb(255, 185, 255);
   color: rgb(253, 197, 234);
   /* text-decoration-color: rgb(255, 240, 250); */
-  text-shadow: 0px 0px 10px rgb(255, 156, 255); 
+  text-shadow: 0px 0px 10px rgb(255, 156, 255);
   border: none;
 }
-#list-view{
+#list-view {
   justify-content: center;
 }
 .map {
-  z-index: 0; 
+  z-index: 0;
   flex-grow: 2;
-  
+
   /* padding: 50;
   max-width: 45%;
   border-radius: 10px; */
 
   /* background: rgb(51, 54, 100); */
   border-radius: 25px;
-  
-  padding: 40px;
-      align-items: center;
 
-  
+  padding: 40px;
+  align-items: center;
 }
 
 /* .gmap-map {
@@ -511,18 +551,17 @@ justify-content: center;
  }  */
 
 #mapBox {
-  margin-top:60px;
+  /* margin-top: 60px; */
   border: none;
   /* position:relative; */
-    overflow:hidden;
+  overflow: hidden;
   /* border-style: solid;
   border-color: #db4dff; */
   border-radius: 10px;
   /* box-shadow: 0px 0px 30px #db4dff; */
-  z-index: 1;  
+  z-index: 1;
   justify-content: center;
   align-items: center;
-
 }
 
 #flex {
@@ -534,20 +573,23 @@ justify-content: center;
 
 #right-panel {
   flex-grow: 1;
-  max-width: 45%;
+  max-width: 40%;
   text-align: center;
-  margin-left: 50px;
-  margin-right: 50px;
-  /* background: rgb(51, 54, 100); */
+  margin-left: 20px;
+  margin-right: 50px; 
+  background: rgb(51, 54, 100); 
   border-radius: 25px;
   padding: 20px;
 }
 
 #left-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex-grow: 1;
-  max-width: 10%;
+  max-width: 15%;
   margin-left: 50px;
-  margin-right: 50px;
+  margin-right: 25px;
   background: rgb(51, 54, 100);
   border-radius: 25px;
   padding-left: 20px;
@@ -557,8 +599,20 @@ justify-content: center;
 
 #rightHeader {
   font-size: 2em;
-  color:#f03768;
+  color: #f03768;
+}
+
+#flex-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+
 }
 
 
+#filter{
+  display: flex;
+  margin-top: 10px;
+}
 </style>

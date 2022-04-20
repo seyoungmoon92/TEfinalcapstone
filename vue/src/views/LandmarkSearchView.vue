@@ -66,12 +66,12 @@ export default {
 } */
 
 .container{
-  margin-top: 20px;
-text-align: center;
-margin-bottom: 30px;
+/* margin-top: 20px; */
+text-align: left;
 }
 .btn {
-  font-size: 1.5rem;
+  font-size: .8rem;
+
 }
 
 /* #map{
