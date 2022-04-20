@@ -82,6 +82,14 @@ h1 {
   margin-bottom: 3em;
   padding-left: 1em;
   padding-right: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  
+
+  background: rgb(51, 0, 85);
+  border-radius: 25px;
+  box-shadow: 0px 0px 30px #db4dff;
+  
 
 }
 </style>
