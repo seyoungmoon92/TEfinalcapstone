@@ -21,7 +21,10 @@ export default {
 h1 {
   margin-top:30px;
   text-align: center;
-  font-size: 2.3rem;
+  font-size: 3rem;
+  /* font-weight: bold; */
+  color:#f03768;
+  text-shadow: 0px 0px 12px #ff006a;
 }
 .form {
   text-align: center;

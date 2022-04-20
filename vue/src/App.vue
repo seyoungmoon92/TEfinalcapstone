@@ -318,7 +318,7 @@ img {
     padding-top: 70px;
   margin: 0;
   width: 100%;
-  min-height: 120vh;
+  min-height: 190vh;
 }
 
 /* *{

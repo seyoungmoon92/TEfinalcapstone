@@ -1,26 +1,29 @@
 <template>
   <div>
-    <div>
-      <h2>Find Landmarks</h2>
-      <label
+    <h2>Find Landmarks</h2>
+    <div id="landmarkHeader">
+     
+      <label  id="prompt"
         >Input your desired search radius:
-        <input
+        <input 
           class="form-control search_radius mb-4"
           v-model="radius"
           type="number"
           placeholder="search radius"
         />
-        Input your starting location.
+        Input your starting location: 
         <!-- prompts user for location -->
         <gmap-autocomplete
           placeholder="Starting Location"
           @place_changed="initMarker"
         ></gmap-autocomplete>
-        <button @click="setStartingLocation">Set</button>
-        <p>Current starting location is: {{ startLocationName }}</p>
+        <button id="setButton" class="btn btn-secondary" @click="setStartingLocation">GO!</button>
+        <p id="prompt">Current starting location is: </p><p id="startName">{{ startLocationName }}</p>
       </label>
+      
       <br />
     </div>
+    
     <br />
     <div id="flex">
       <div id="left-panel">
@@ -30,7 +33,7 @@
           v-bind:key="landmark.id"
           id="list-view"
         >
-          <button id="column-name" v-on:click="currentLandmark = index, setCenter(index)">
+          <button type="button" class="btn btn-dark" id="column-name" v-on:click="currentLandmark = index, setCenter(index)">
             {{ landmark.name }}
           </button>
         </div>
@@ -55,19 +58,20 @@
       </div>
       <div id="right-panel">
         <div v-if="currentLandmark == -1">
-          <p>Please select a landmark</p>
+          <p id="pleaseSelectLandmark">Please select a landmark</p>
         </div>
         <div v-if="currentLandmark != -1">
           <p id = "rightHeader">{{ landmarks[currentLandmark].name }}</p>
-          <p>{{ landmarks[currentLandmark].description }}</p>
+          <p id="description">{{ landmarks[currentLandmark].description }}</p>
           <img :src="photos[currentLandmark].photoUrl" style="width:90%;" alt="">
           
-          
-          <button v-on:click="updateItinerary(currentLandmark, selectedValue.split(':')[0] - 1)" > Add to itinerary </button>
+          <div id="itinlist">
+          <button id="itinbtn" class= "btn btn-primary" v-on:click="updateItinerary(currentLandmark, selectedValue.split(':')[0] - 1)" > Add to Itinerary </button>
 
-          <select id="categories" v-model="selectedValue">
+          <select class="custom-select" id="categories" v-model="selectedValue">
             <option v-for="(itinerary, index) in itineraries" v-bind:key="itinerary.id">{{index + 1}}: {{itinerary.itineraryName}}</option>
           </select>
+          </div>
         </div>
       </div>
     </div>
@@ -368,15 +372,86 @@ export default {
 </script>
 
 <style scoped>
+#pleaseSelectLandmark{
+  font-size: 1.5rem;
+  width: 100%;
+}
+input{
+  text-align: center;
+  
+}
+.custom-select{
+  max-width: 20rem;
+  font-size: 1.4rem;
+}
+#itinlist{
+  margin-top: 20px;
+}
+#itinbtn{
+  font-size: 1.4rem;
+  max-width: 12rem;
+}
+#description{
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+#startName{
+  color:white;
+}
+#setButton{
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  max-width: 5rem;
+}
+p{
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+h2{
+  margin-top: 20px;
+  text-align: center;
+  color:#f03768;
+  font-size: 3rem;
+  text-shadow: 0px 0px 12px #ff006a;
+}
+#landmarkHeader{
+  
+  text-align: center;
+display:flex;
+justify-content: center;
+}
+.btn-secondary, .btn-primary{
+  margin: 3px 0;
+  width: 100%;
+}
+.btn-dark{
+  margin: 3px 0;
+  width: 100%;
+  border-radius: 10px;
+}
+.btn:hover{
+  /* box-shadow: 0px 0px 10px rgb(255, 185, 255);  */
+}
+.btn-dark:focus{
+  box-shadow: 0px 0px 8px rgb(255, 185, 255);
+  color: rgb(253, 197, 234);
+  /* text-decoration-color: rgb(255, 240, 250); */
+  text-shadow: 0px 0px 10px rgb(255, 156, 255); 
+}
+#list-view{
+  justify-content: center;
+}
 .map {
   z-index: 0; 
   flex-grow: 2;
   
-  padding: 50;
+  /* padding: 50;
   max-width: 45%;
-  border-radius: 10px;
+  border-radius: 10px; */
 
-  background: rgb(51, 54, 100);
+  /* background: rgb(51, 54, 100); */
   border-radius: 25px;
   padding: 40px;
       align-items: center;
@@ -390,10 +465,12 @@ export default {
 
 #mapBox {
   border-style: solid;
-  border-color: #db4dff;
+  /* border-color: #db4dff; */
   /* border-radius: 10px; */
-  box-shadow: 0px 0px 30px #db4dff;
+  /* box-shadow: 0px 0px 30px #db4dff; */
   z-index: 1;  
+  justify-content: center;
+  align-items: center;
 
 }
 
@@ -410,7 +487,7 @@ export default {
   text-align: center;
   margin-left: 50px;
   margin-right: 50px;
-  background: rgb(51, 54, 100);
+  /* background: rgb(51, 54, 100); */
   border-radius: 25px;
   padding: 20px;
 }
@@ -422,11 +499,14 @@ export default {
   margin-right: 50px;
   background: rgb(51, 54, 100);
   border-radius: 25px;
-  padding: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 #rightHeader {
   font-size: 2em;
+  color:#f03768;
 }
 
 

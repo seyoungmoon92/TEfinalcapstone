@@ -1,5 +1,5 @@
 !<template>
-  <div func: this.updateLandmarks> 
+  <div id="landmarkCard" func: this.updateLandmarks> 
     <!-- <button @click="updateLandmarks">Update Landmarks</button>  -->
     <!-- <div>
       <h2>Find Landmarks</h2>
@@ -149,6 +149,10 @@ export default {
 </script>
 
 <style scoped>
+#landmarkCard{
+  background-color: #07163a;
+  min-height: 500vh;
+}
 body {
   background-color: #f2f2f2;
   font-family: "RobotoDraft", "Roboto", sans-serif;
@@ -165,10 +169,11 @@ h5 {
   margin: 0px;
   font-size: 1.3em;
   font-weight: 1200;
-  background-color:#7c7c7c;
+  background-color:#4d4c4c;
   border-radius: 6px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 p {

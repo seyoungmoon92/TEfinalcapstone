@@ -38,7 +38,7 @@
         
         <p id="listHeader">Points of Interest:</p>
         <div v-for="(landmark, index2) in landmarkNames" v-bind:key="landmark">
-          <div v-if="hasLandmark(index2, index)">{{ landmark }}</div>
+          <div id="landmarks" v-if="hasLandmark(index2, index)">{{ landmark }}</div>
         </div>
         <!-- <edit-itinerary /> -->
         <!-- <div>
@@ -161,6 +161,9 @@ export default {
 };
 </script>
 <style scoped>
+#landmarks{
+  color:white;
+}
 .wrap-1{
   padding-bottom: 20px;
 }
