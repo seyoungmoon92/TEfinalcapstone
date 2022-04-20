@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="home"> -->
   <div class="page">
-    <header tabindex="0">GOGO TOKYO</header>
+    <header tabindex="0" class="title">GOGO TOKYO</header>
     <div id="nav-container">
       <div class="bg"></div>
       <div class="button" tabindex="0">
@@ -74,6 +74,11 @@ export default {
 }
 
 
+
+.title{
+  font-size: 1.7rem;
+  text-shadow: 0px 0px 10px #db4dff;
+}
 
 
 strong {
