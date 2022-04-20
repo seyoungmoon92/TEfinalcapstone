@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <div class="page">
       <h1> {{landmark.name}} </h1>
+      <div class="address-description">
       <p> Address: {{landmark.location}} </p>
-      <p> Description: {{landmark.description}} </p>
+      <p class="description"> Description: {{landmark.description}} </p>
+      </div>
+      <div class="fun-facts">
       <p> Fun Fact: {{landmark.funFact1}} </p>
       <p> Fun Fact: {{landmark.funFact2}} </p>
       <p> Fun Fact: {{landmark.funFact3}} </p>
+      </div>
       
           <div class="property-image" v-bind:style="'background-image:url(' + photo[0].photoUrl + ')'"></div>
       <!-- <p> Rating: {{landmark.rating}} </p> -->
@@ -37,15 +41,22 @@ created() {
 
 
 <style scoped>
-div {
-  margin-right: 360px;
-  margin-left: 360px;
+.page {
+  margin-right: 15em;
+  margin-left: 15em;
+}
+.address-description {
+  margin-right: 50em;
+  border-style: solid;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .property-image {
   display: block;
-  margin-left: auto;
+  margin-left: 0px;
   margin-right: auto;
+  margin-top: 0px;
   height: 30em;
   width: 45em;
   background-size: contain;
@@ -54,12 +65,23 @@ div {
 
 }
 
+
 h1 {
-  line-height: calc(20px + 20vh);
+  /* line-height: calc(20px + 20vh); */
   color: #fccaff;
   /* text-shadow: 0 0 5px #fa92bd, 0 0 15px #fa92bd, 0 0 20px #fa92bd, 0 0 40px #fa92bd, 0 0 60px #ff0000, 0 0 10px #ff006a, 0 0 98px #ff0000; */
   color: #ff006a;
   font-family: "Roboto Mono", cursive;
   text-align: start;
+}
+.fun-facts {
+  border-style: solid;
+  margin-top: 5em;
+  margin-right: 0px;
+  margin-left: 50em;
+  margin-bottom: 3em;
+  padding-left: 1em;
+  padding-right: 1em;
+
 }
 </style>
