@@ -369,11 +369,18 @@ export default {
 
 <style scoped>
 .map {
-  /* z-index: -1; */
+  z-index: 0; 
   flex-grow: 2;
   
   padding: 50;
   max-width: 45%;
+  border-radius: 10px;
+
+  background: rgb(51, 54, 100);
+  border-radius: 25px;
+  padding: 40px;
+      align-items: center;
+
   
 }
 
@@ -382,10 +389,12 @@ export default {
  }  */
 
 #mapBox {
-  border-style: double;
-  border-width: 12px;
-  border-color: pink;
-  border-radius: 10px;  
+  border-style: solid;
+  border-color: #db4dff;
+  /* border-radius: 10px; */
+  box-shadow: 0px 0px 30px #db4dff;
+  z-index: 1;  
+
 }
 
 #flex {
@@ -401,6 +410,9 @@ export default {
   text-align: center;
   margin-left: 50px;
   margin-right: 50px;
+  background: rgb(51, 54, 100);
+  border-radius: 25px;
+  padding: 20px;
 }
 
 #left-panel {
@@ -408,6 +420,9 @@ export default {
   max-width: 10%;
   margin-left: 50px;
   margin-right: 50px;
+  background: rgb(51, 54, 100);
+  border-radius: 25px;
+  padding: 30px;
 }
 
 #rightHeader {
